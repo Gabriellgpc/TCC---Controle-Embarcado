@@ -1,0 +1,26 @@
+\begin{table}[H]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|c|c|l|}
+\hline
+\multicolumn{1}{|c|}{Command Tag} & \multicolumn{1}{l|}{Hex} & Arg. & \multicolumn{1}{c|}{Description} \\ \hline
+CMD\_REQ\_CAL & 0x00 & - & \begin{tabular}[c]{@{}l@{}}Solicita ao microcontrolador que envie os\\ dados da última calibração, que estão armazenados na memória flash.\end{tabular} \\ \hline
+ &  &  &  \\ \hline
+ &  &  &  \\ \hline
+CMD\_REQ\_OMEGA & 0x03 & - & \begin{tabular}[c]{@{}l@{}}Solicita ao microcontrolador que envie as leituras atuais da velocidade\\ de rotação, em rad/s, dos dois motores. O microcontrolador enviará dois\\ floats, sendo primeiro float refererente ao motor esquerdo e o segundo ao\\ motor direito.\end{tabular} \\ \hline
+CMD\_CALIBRATION & 0x04 & - & \begin{tabular}[c]{@{}l@{}}Sinaliza para o microcontrolador que ele deve iniciar a rotina de calibração\\ dos parâmetros do controlador, bem como os parâmetros para o filtro de Kalman.\end{tabular} \\ \hline
+CMD\_IDENTIFY & 0x05 & - & \begin{tabular}[c]{@{}l@{}}Sinaliza para o microcontrolador que ele deve iniciar a rotina \\ de coleta dos dados  de identificação e ao final deve enviar \\ esses dados para o host.\end{tabular} \\ \hline
+ &  &  &  \\ \hline
+ &  &  &  \\ \hline
+ &  &  &  \\ \hline
+ &  &  &  \\ \hline
+CMD\_REF & 0x0A & \begin{tabular}[c]{@{}c@{}}ref. Left (15bits)\\ ref.Right (15 bits)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Informa ao microcontrolador qual referência aplicar para \\ o controlador de velocidade de rotação. \\ As referências estão no intervalo {[}-1.0, 1.0{]}.\end{tabular} \\ \hline
+CMD\_CONTROL\_SIGNAL & 0x0B & \begin{tabular}[c]{@{}c@{}}pwm. Left (15bits)\\ pwm.Right (15 bits)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Informa ao microcontrolador qual sinal de controle aplicar. \\ Valores no intervalo {[}-1.0, 1.0{]}.\end{tabular} \\ \hline
+ &  &  &  \\ \hline
+ &  &  &  \\ \hline
+CMD\_RESET & 0x0E &  &  \\ \hline
+CMD\_PING & 0x0F & mensagem qualquer & Sinaliza para o microcontrolador que ele deve apenas devolver a mensagem para o host. \\ \hline
+\end{tabular}
+}
+\caption{}
+\label{tab:command_table}
+\end{table}
