@@ -1,1 +1,62 @@
 \section{Mínimos Quadrados}
+De maneira geral, a ideia por trás do método dos mínimos quadrados (MMQ)  é de encontrar os coeficientes da(s) funções de base que minimizem o erro, ou seja, com o menor erro possível associado a representação \cite{MMQ}. Assim, dado que queremos obter a equação e possuímos vetores de dados $x$ e $y$, e queremos relacioná-los. Por exemplo, caso queira-se aproximar o conjunto de dados para a reta:
+
+\begin{equation}
+    y = ax + b.
+    \label{eq:pol1}
+\end{equation}
+
+Teremos a seguinte relação para o MMQ.
+
+\begin{align*}
+    \textbf{Y} = \textbf{X}\alpha
+\end{align*}
+% \[\textbf{Y} = \textbf{X}\alpha\]
+sendo,
+
+\begin{equation*}
+    \textbf{Y} =
+    \begin{bmatrix}
+     y_1\\
+     y_2\\
+     \vdots\\
+     y_n
+    \end{bmatrix},
+    \textbf{X} = 
+    \begin{bmatrix}
+        x_1 & 1\\
+        x_2 & 1\\
+        \vdots & \vdots\\
+        x_n & 1\\
+    \end{bmatrix},
+    \alpha =
+    \begin{bmatrix}
+        a\\
+        b\\
+    \end{bmatrix}
+\end{equation*}
+
+A ideia por trás do método de mínimos quadrados é minimizar o erro $e$. Sabendo que o espaço gerado por tal plano ortogonal será dado pela matriz $X^T$ , então queremos impor que o vetor
+de erro $e$ será nulo, logo:
+
+\[\textbf{X}^Te = 0\]
+
+Como,
+
+\[e = \textbf{Y} - \textbf{X}\hat{\alpha}\]
+
+Então temos,
+
+\[\textbf{X}^T(\textbf{Y} - \textbf{X}\hat{\alpha})= 0\]
+\[\hat{\alpha} = (\textbf{X}^T\textbf{X})^{-1}\textbf{X}^T\textbf{Y} \]
+
+Sendo,
+
+\[\hat{\alpha} = 
+\begin{bmatrix}
+ \hat{a}\\
+ \hat{b}\\
+\end{bmatrix}
+\]
+
+Os elementos do vetor $\hat{\alpha}$, Serão os coeficientes da equação \ref{eq:pol1} que minimizarão o erro, ou seja, são os coeficientes da reta que melhor representa o conjunto de dados.

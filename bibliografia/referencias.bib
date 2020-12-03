@@ -19,8 +19,19 @@
     pages={838-849},
     doi={10.1109/63.788480}
 }
+% Tudo trabalho do Y. Hori.
+@INPROCEEDINGS{Y_HORI_01,  
+    author={Y. {Hori}},
+    booktitle={Proceedings 1993 Asia-Pacific Workshop on Advances in Motion Control},   
+    title={High performance control of servomotors with low precision shaft encoder using instantaneous speed observer and adaptive identification of inertia moment},   
+    year={1993},  
+    volume={},  
+    number={},  
+    pages={7-12},  
+    doi={10.1109/APWAM.1993.316178}
+}
 
-@INPROCEEDINGS{low_precision_encoder02,  
+@INPROCEEDINGS{Y_HORI_02,  
     author={Y. {Hori}},  
     booktitle={Proceedings of IECON '93 - 19th Annual Conference of IEEE Industrial Electronics},   
     title={Robust and adaptive control of a servomotor using low precision shaft encoder},   
@@ -80,7 +91,7 @@
 
 % Trabalhos sobre o ruído das quantizações
 % referencias citadas no trabalho: T. {Shi} and Z. {Wang} and C. {Xia}
-@ARTICLE{quantization_error01,  
+@ARTICLE{quantization_error_is_a_gaussian,  
     author={A. {Sripad} and D. {Snyder}},  
     journal={IEEE Transactions on Acoustics, Speech, and Signal Processing},   
     title={A necessary and sufficient condition for quantization errors to be uniform and white},   
@@ -90,6 +101,8 @@
     pages={442-448},  
     doi={10.1109/TASSP.1977.1162977}
 }
+
+@INPROCEEDINGS{quantization_error01,  author={F. {Briz} and J. A. {Cancelas} and A. {Diez}},  booktitle={Proceedings of IECON'94 - 20th Annual Conference of IEEE Industrial Electronics},   title={Speed measurement using rotary encoders for high performance AC drives},   year={1994},  volume={1},  number={},  pages={538-542 vol.1},  doi={10.1109/IECON.1994.397844}}
 
 @ARTICLE{quantization_error02,  
     author={R. C. {Kavanagh} and J. M. D. {Murphy}},  
@@ -183,6 +196,16 @@ doi="10.1007/978-94-009-7007-6_13",
 url="https://doi.org/10.1007/978-94-009-7007-6_13"
 }
 
+@book{ogata2011engenharia,
+  title={Engenharia de controle moderno},
+  author={Ogata, K.},
+  isbn={9788576058106},
+  url={https://books.google.com.br/books?id=iL3FYgEACAAJ},
+  year={2011},
+  publisher={PRENTICE HALL BRASIL}
+}
+
+
 % Controlador FeedBack-FeedForward para controle de velocidade em motores DC
 @INPROCEEDINGS{feedback_feedforward_control01,  
 author={I. {Okoro}},  
@@ -206,4 +229,73 @@ doi={10.1109/PowerAfrica.2019.8928655}}
 % O autor usou um RTOS também.
 @INPROCEEDINGS{embedded_control,  author={H. {Wu} and X. {Chen} and L. {Hu}},  booktitle={2008 ISECS International Colloquium on Computing, Communication, Control, and Management},   title={Embedded System of DC Motor Speed Control Based on ARM},   year={2008},  volume={2},  number={},  pages={123-126},  doi={10.1109/CCCM.2008.106}}
 
+% Trabalha relacionado a zona morta de motores
+@INPROCEEDINGS{dead_zone,  author={E. P. {Mendes} and A. A. D. {Medeiros}},  booktitle={2010 Latin American Robotics Symposium and Intelligent Robotics Meeting},   title={Identification of Quasi-linear Dynamic Model with Dead Zone for Mobile Robot with Differential Drive},   year={2010},  volume={},  number={},  pages={132-137},  doi={10.1109/LARS.2010.36}}
 
+% MMQ
+@Inbook{MMQ,
+author="Brandt, Siegmund",
+title="The Method of Least Squares",
+bookTitle="Data Analysis: Statistical and Computational Methods for Scientists and Engineers",
+year="2014",
+publisher="Springer International Publishing",
+address="Cham",
+pages="209--265",
+abstract="The method of least squares was first developed by LEGENDRE and GAUSS. In the simplest case it consists of the following prescription:",
+isbn="978-3-319-03762-2",
+doi="10.1007/978-3-319-03762-2_9",
+url="https://doi.org/10.1007/978-3-319-03762-2_9"
+}
+
+@misc{esp, title={ESP-IDF Programming Guide}, url={https://docs.espressif.com/projects/esp-idf/en/stable/api-reference/index.html}, journal={ESP}
+}
+
+@manual{Senn:2009,
+      title  = "Using {\LaTeX} for Your Thesis",
+      author = "Mark Senn",
+      url    = "http://engineering.purdue.edu/~mark/puthesis",
+      year   = "2009 (accessed February 3, 2014)"
+}
+
+% Pololu.com. n.d. Pololu - 30:1 Micro Metal Gearmotor HP 6V With Extended Motor Shaft. [online] Available at: <https://www.pololu.com/product/2212/resources> [Accessed 3 December 2020].
+
+@misc{Pololu,
+    title={{Pololu} Robotics and Eletronics},
+    howpublished = "\url{https://www.pololu.com/}",
+    note = {Acessado em: 03-12-2020}
+}
+
+@misc{Pololu:Encoder_no_motor,
+    title ={Pair, Magnetic Encoder},
+    subtitle = {Magnetic Encoder Pair Kit for Micro Metal Gearmotors},
+    howpublished={\url{https://www.pololu.com/product/3081}},
+    note = {Acessado em: 03-12-2020}
+}
+
+@misc{Pololu:Encoder,
+    title = "Magnetic Encoder",
+    subtitle={Magnetic Encoder Pair Kit for Micro Metal Gearmotors, 12 CPR, 2.7-18V},
+    publisher={Pololu Robotics and Eletronics},
+    howpublished={\url{https://www.pololu.com/product/3081/specs}},
+    note = {Acessado em: 03-12-2020}
+}
+
+@misc{Pololu:Driver,
+    title = "Driver Motor",
+    subtitle={TB6612FNG Dual Motor Driver Carrier},
+    publisher={Pololu Robotics and Eletronics},
+    howpublished={\url{https://www.pololu.com/product/713/resources}},
+    note = {Acessado em: 03-12-2020}
+}
+
+@misc{esp32:datasheet,
+    title={ESP32-DATASHEET},
+    howpublished={\url{https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf}},
+    note={Acessado em: 03-12-2020}
+}
+
+@misc{bateria:futuramix,
+    title={Ne-ba931},
+    howpublished={\url{http://www.futuramix.com.br/bateria-lipo-1s-37v-750mah-ne-ba931-para-solo-pro-180-helicoptero-pode-retirar/prod-4516975/}},
+    note={Acessado em: 03-12-2020}
+}

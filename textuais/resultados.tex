@@ -15,42 +15,223 @@
 % MOSTRAR:
 % RESPOSTAS PARA DIFERENTES CONFIGURAÇÕES DE MOTOR-SENTIDO E COM DIFERENTES REFERENCIAS/SINAIS DE CONTROLE PARA:
 % CURVA ESTIMADA X SEM FILTRO X COM FILTRO
+% \section{Resultados da calibração}
 
-\section{Resultados da calibração}
+\input{tabelas/calibracoes}
+
 
 \begin{figure}[H]
+    % \centering
+    \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=13cm]{figuras/resultados/plot_test_calibration_result_feedforward.png}
-    \caption{TESTE: RESULTADO DA IDENTIFICAÇÃO/CALIBRAÇÃO}
+    \includegraphics[width=\textwidth]{figuras/resultados/exp01/curva_feedforward_esquerdo100.eps}
+    \caption{Curva $u(\omega)$ para o motor esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp01/curva_feedforward_direito100.eps}
+    \caption{Curva $u(\omega)$ para o motor direito.}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp01/regressao_vs_medido_esquerdo100.eps}
+    \caption{Curva $\omega(t)$ ideal, com os parâmetros da identificação vs velocidades medidas. Motor Esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp01/regressao_vs_medido_direito100.eps}
+    \caption{Curva $\omega(t)$ ideal, com os parâmetros da identificação vs velocidades medidas. Motor Direito.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp01/filtro_vs_sem_filtro_esquerdo100.eps}
+    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp01/filtro_vs_sem_filtro_direito100.eps}
+    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp01/controlador_vs_sem_controlador100.eps}
+    \caption{Comparação entre o sistema com controlador vs sem controlador.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp01/antes_vs_depois100.eps}
+    \caption{Resposta sem observador e sem controle vs com controlador e observador.}
+    \end{subfigure}
+    
+    \caption{Experimento 1. \emph{Sinal de controle e Referência igual a 1.0.}}
+    \label{fig:exp01_100}
 \end{figure}
 
+
 \begin{figure}[H]
+    % \centering
+    \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=13cm]{figuras/resultados/plot_test_identificacao.png}
-    \caption{TESTE: RESULTADO DA IDENTIFICAÇÃO/CALIBRAÇÃO}
+    \includegraphics[width=\textwidth]{figuras/resultados/exp02/curva_feedforward_esquerdo100.eps}
+    \caption{Curva $u(\omega)$ para o motor esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp02/curva_feedforward_direito100.eps}
+    \caption{Curva $u(\omega)$ para o motor direito.}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp02/regressao_vs_medido_esquerdo100.eps}
+    \caption{Curva $\omega(t)$ ideal, com os parâmetros da identificação vs velocidades medidas. Motor Esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp02/regressao_vs_medido_direito100.eps}
+    \caption{Curva $\omega(t)$ ideal, com os parâmetros da identificação vs velocidades medidas. Motor Direito.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp02/filtro_vs_sem_filtro_esquerdo100.eps}
+    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp02/filtro_vs_sem_filtro_direito100.eps}
+    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp02/controlador_vs_sem_controlador100.eps}
+    \caption{Comparação entre o sistema com controlador vs sem controlador.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp02/antes_vs_depois100.eps}
+    \caption{Resposta sem observador e sem controle vs com controlador e observador.}
+    \end{subfigure}
+    
+    \caption{Experimento 2. \emph{Sinal de controle e Referência igual a 1.0.}}
+    \label{fig:exp02_100}
 \end{figure}
 
-\section{Filtragem da velocidade}
-% MOSTRAR A FILTRAGEM COM DIFERENTES PARÂMETROS:
-% sintonizando a incerteza da medição e do modelo (Q e R)
+
 
 \begin{figure}[H]
+    % \centering
+    \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=13cm]{figuras/resultados/plot_test_media_x_kalman.png}
-    \caption{TESTE: MEDIA VS KALMAN}
+    \includegraphics[width=\textwidth]{figuras/resultados/exp03/curva_feedforward_esquerdo100.eps}
+    \caption{Curva $u(\omega)$ para o motor esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp03/curva_feedforward_direito100.eps}
+    \caption{Curva $u(\omega)$ para o motor direito.}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp03/regressao_vs_medido_esquerdo100.eps}
+    \caption{Curva $\omega(t)$ ideal, com os parâmetros da identificação vs velocidades medidas. Motor Esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp03/regressao_vs_medido_direito100.eps}
+    \caption{Curva $\omega(t)$ ideal, com os parâmetros da identificação vs velocidades medidas. Motor Direito.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp03/filtro_vs_sem_filtro_esquerdo100.eps}
+    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp03/filtro_vs_sem_filtro_direito100.eps}
+    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp03/controlador_vs_sem_controlador100.eps}
+    \caption{Comparação entre o sistema com controlador vs sem controlador.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp03/antes_vs_depois100.eps}
+    \caption{Resposta sem observador e sem controle vs com controlador e observador.}
+    \end{subfigure}
+    
+    \caption{Experimento 3. \emph{Sinal de controle e Referência igual a 1.0.}}
+    \label{fig:exp03_100}
 \end{figure}
 
-\section{Respostas do sistema com os controladores}
-
 
 \begin{figure}[H]
+    % \centering
+    \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=13cm]{figuras/resultados/plot_test.png}
-    \caption{TESTE: COM CONTROLE VS SEM CONTROLE}
-\end{figure}
-
-\begin{figure}[H]
+    \includegraphics[width=\textwidth]{figuras/resultados/exp04/curva_feedforward_esquerdo100.eps}
+    \caption{Curva $u(\omega)$ para o motor esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=13cm]{figuras/resultados/plot_test_antes_x_depois.png}
-    \caption{TESTE: ANTES X DEPOIS}
+    \includegraphics[width=\textwidth]{figuras/resultados/exp04/curva_feedforward_direito100.eps}
+    \caption{Curva $u(\omega)$ para o motor direito.}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp04/regressao_vs_medido_esquerdo100.eps}
+    \caption{Curva $\omega(t)$ ideal, com os parâmetros da identificação vs velocidades medidas. Motor Esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp04/regressao_vs_medido_direito100.eps}
+    \caption{Curva $\omega(t)$ ideal, com os parâmetros da identificação vs velocidades medidas. Motor Direito.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp04/filtro_vs_sem_filtro_esquerdo100.eps}
+    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp04/filtro_vs_sem_filtro_direito100.eps}
+    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp04/controlador_vs_sem_controlador100.eps}
+    \caption{Comparação entre o sistema com controlador vs sem controlador.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figuras/resultados/exp04/antes_vs_depois100.eps}
+    \caption{Resposta sem observador e sem controle vs com controlador e observador.}
+    \end{subfigure}
+    
+    \caption{Experimento 4. \emph{Sinal de controle e Referência igual a 1.0.}}
+    \label{fig:exp04_100}
 \end{figure}

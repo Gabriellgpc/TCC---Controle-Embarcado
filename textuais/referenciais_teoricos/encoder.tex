@@ -12,7 +12,7 @@
 % FALAR DO GRAY CODE
 % FALAR DO ERRO DE QUANTIZAÇÃO
 
-As saídas de um \emph{Encoder} incremental são, normalmente, duas ondas quadradas defasadas em $90^\circ$ uma da outra (em quadratura). Essa diferença de fase nos permite medir o sentido de rotação. Abordagens mais eficientes de leitura desses sensores é por meio da detecção das bordas dessas ondas, pois isso permite quadruplicar o número de pulsos por revolução (NPR) [?]. Existem dois métodos básicos para se realizar a medição da velocidade por meio desses sensores, são eles: \textbf{frequencímetro} e \textbf{periodímetro}. 
+As saídas de um \emph{Encoder} incremental são, normalmente, duas ondas quadradas defasadas em $90^\circ$ uma da outra (em quadratura). Essa diferença de fase nos permite medir o sentido de rotação. Abordagens mais eficientes de leitura desses sensores é por meio da detecção das bordas dessas ondas, pois isso permite quadruplicar o número de pulsos por revolução (NPR) \cite{quantization_error01}. Existem dois métodos básicos para se realizar a medição da velocidade por meio desses sensores, são eles: \textbf{frequencímetro} e \textbf{periodímetro}. 
 
 Na medição por frequência (\textbf{frequencímetro}), conta-se o número de pulsos que ocorreram em um determinado período de tempo fixo. Com isso a velocidade pode ser obtida pela seguinte aproximação:
 
@@ -39,7 +39,7 @@ A Figura \ref{fig:ilustracao_erro_quantizacao} ilustra um exemplo de medição d
 Nota-se pela Equação \ref{eq:erro_de_quantizacao_frequencimetro} que o erro de quantização para a medição por frequência decresce com o aumento do número de pulsos por revolução e/ou com o aumento da janela de tempo ($T$), porém o aumento do período de observação acrescenta um atraso na medição da velocidade. O erro relativo à velocidade pode ser descrito como a seguir:
 
 \begin{equation}
-    e_{\omega}\% = \frac{2\pi}{\omega N_{PR} T}.100
+    e_{\omega} = \frac{2\pi}{\omega N_{PR} T}
     \label{eq:erro_relativo_quantizacao_frequencimetro}
 \end{equation}
 
@@ -58,10 +58,10 @@ O período entre pulsos será:
     T_{\omega}(\omega) = \frac{2\pi}{N_{p}\omega} [s]
 \end{equation}
 
-Uma aproximação para o pior caso do erro de quantização relativo a velocidade é apresentado a seguir [?]:
+Uma aproximação para o pior caso do erro de quantização relativo a velocidade é apresentado a seguir \cite{analise_incr_enc}:
 
 \begin{equation}
-    e_{\omega}\% = \frac{T_{hf}}{ \frac{2\pi}{N_{PR} \omega} - T_{hf} }.100 \cong \frac{\omega N_{PR} T_{hf}}{2\pi}.100
+    e_{\omega} = \frac{T_{hf}}{ \frac{2\pi}{N_{PR} \omega} - T_{hf} } \cong \frac{\omega N_{PR} T_{hf}}{2\pi}
     \label{eq:erro_quantizacao_periodimetro}
 \end{equation}
 

@@ -7,11 +7,15 @@ Nessa seção será apresentado de forma técnica e descritiva a metologia utili
 % Projeto estrutural e eletrônico
 \input{textuais/robo/robo}
 
-\section{O \emph{Firmware}}
+\section{Sistema Embarcado - \emph{Firmware}}
+\label{sec:sistema_embarcado}
 % Falar sobre como foi feito a divisão das atividades no microcontrolador
 % Mostrar ilustração dessa divisão, para ter-se uma visão global das rotinas e suas relações de dependência
 
+
+
 \subsection{Rotina de Calibração}
+\label{subsec:rotina_calibracao}
 
 Rotina responsável por realizar a identificação dos parâmetros do modelo dos motores direito e esquerdo do robô: constante de tempo; ganho de malha aberta; parâmetros do controlador \emph{FeedForward}; velocidade máxima de cada motor. Bem como calcular os ganhos para o controlador \emph{PID} de forma a se obter uma resposta pré-definida em malha fechada.\\
 
@@ -22,15 +26,9 @@ A rotina de calibração consiste em três etapas que são repetidas para todas 
 % FIGURAS ILUSTRANDO O COMPORTAMENTO GERAL DAS FUNÇÕES QUE ESTÃO SENDO USADAS NA INTERPOLAÇÃO
 % PSEUDO CÓDIGOS TALVEZ
 
-\textbf{ETAPA 1.} Estimar a zona morta e o ganho da planta em malha aberta. Para isso é realizado a coleta de $N$ pontos ($\omega$,$u$), o primeiro ponto é coletado para $u = \pm1$(valor máximo no sentido de giro atual) e é realizado sucessivos decréscimos neste valor até a parada do motor ($\omega = 0$). \\
+\textbf{ETAPA 1.} Estimar a zona morta e o ganho da planta em malha aberta. Para isso é realizado a coleta de $N$ pontos ($\omega$,$u$), o primeiro ponto é coletado para $u = \pm1$(valor máximo no sentido de giro atual) e é realizado sucessivos decréscimos neste valor até a parada do motor ($\omega = 0$). A aquisição destes pontos ocorre da maior velocidade para a menor, pois a zona morta será mais baixa neste sentido, devido a inercia do motor.\\
 
-% Aplicar sinal de controle atual ($u_i$);\\
-% Aguardar um tempo fixo, pré-determinado, para garantir a leitura de $\omega_{ss}$(velocidade de máxima/velocidade de regime)
-% Armazenar ($u_i$,$\omega_{ss}$).\\
-
-A aquisição destes pontos ocorre da maior velocidade para a menor, pois a zona morta será mais baixa neste sentido, devido a inercia do motor.\\
-
-Ao se encerrar a coleta destes pontos ($\omega_{ss} = 0$ detectado) é realizado uma regressão linear por \textit{MMQ}, tendo $\omega$ no eixo das ordenadas e $u$ no eixo das abscisas, o coeficiente angular dessa reta relaciona a velocidade angular ($\omega$) com o sinal de controle ($u$), já o coeficiente linear representa a zona morta, ou seja, o menor $u$ que pode iniciar o giro do motor.
+Ao se encerrar a coleta destes pontos ($\omega_{ss} = 0$ detectado) é realizado uma regressão linear por mínimos quadrados, tendo $\omega$ no eixo das ordenadas e $u$ no eixo das abscisas, o coeficiente angular dessa reta relaciona a velocidade angular ($\omega$) com o sinal de controle ($u$), já o coeficiente linear representa a zona morta, ou seja, o menor $u$ que pode iniciar o giro do motor (\emph{Dead None ($D$)}). A regressão linear é possível, apesar do comportamento não linear (como também explorado em \cite{dead_zone}) entre a velocidade e o sinal de controle e ilustrado na Figura \ref{fig:ilustracao_omega_x_pwm}, se analisado um sentido de rotação por vez.
 
 \begin{equation*}
     u(\omega) = a\omega + b
@@ -47,7 +45,9 @@ Com esses parâmetros dessa reta é possível estimar o ganho de malha aberta da
     \includegraphics[width=0.5\textwidth]{figuras/ilustracoes/omega_x_sinal_controle.eps}
     \caption{Comportamento da curva $u(\omega)$.}
     \label{fig:ilustracao_omega_x_pwm}
-\end{figure}    
+\end{figure}
+
+A Figura \ref{fig:ilustracao_omega_x_pwm} apresenta uma ilustração da relação entre o \emph{PWM} (sinal de controle) e a velocidade de regime $\omega_{ss}$ do motor.
     
 \textbf{ETAPA 2.} Estimar a constante de tempo. Para obter a constante de tempo da planta na configuração atual, faz-se uso mais uma vez de interpolação por \textit{MMQ} e tira-se proveito do conhecimento do ganho da planta para simplificar e tornar possível essa interpolação de forma simples. Para estimar a constante de tempo obtém-se $M$ pontos ($t$,$\omega$) e aplica-se o \textit{MMQ} para uma interpolação linear, para isso é necessário fazer a seguinte alteração:
     
@@ -69,6 +69,7 @@ Ao se passar por todas as configurações de motor/sentido a rotina seleciona a 
 Por fim os resultados são armazenados na memória permanente do microcontrolador, sendo atualizado/sobrescrita apenas ao final da próxima chamada da rotina de calibração.
 
 \subsection{Rotina de Comunicação}
+\label{subsec:rotina_comunicacao}
 % TODO:
 % IDEIA: ILUSTRAR A INTERAÇÃO ENTRE A ROTINA PRINCIPAL E A INTERRUPÇÃO
 A rotina de comunicação opera em um \emph{loop} infinito no núcleo principal do microcontrolador e é responsável por tratar os telecomandos recebidos pelo \textit{Bluetooth}. Ao ser identificado um recebimento de mensagem pela sinal de interrupção da comunicação \textit{Bluetooth} é acionado a função de tratamento de interrupção correspondente que possui como única função encaminhar as mensagens válida (verificar cabeçalho) para a rotina principal de comunicação. Isso é feito para evitar sobrecarregar a interrupção, já que ela deve operar em altas frequências.\\
@@ -116,6 +117,7 @@ O protocolo implementado, foi pensado para conter até três grandes campos, o \
 \input{tabelas/tabela_comandos}
 
 \subsection{Rotina de Controle}
+\label{subsec:rotina_controle}
 % TODO:
 O controle é executado sozinho no núcleo secundário do ESP32 em \emph{loop} infinito com uma taxa de atualização de $5ms$. A rotina consiste em receber as velocidades providas pela de leitura dos sensores por meio de mensagens entre processos, em seguida é realizado a etapa de controle propriamente dita, que consiste em aplicar a ação do controle \textit{FeedForward} somado a ação do controle de malha fechada, tendo como entrada a última referência de percentual de velocidade lida pela rotina de comunicação multiplicada pela velocidade máxima considerada para a rotação do eixo do motor, para passar a referência para $rad/s$. \\
 
@@ -165,6 +167,7 @@ Ao final do fluxo de controle tem-se o sinal de controle, este por sua vez é ut
 
 % ******************************************************************
 \subsection{Rotina de Leitura dos Sensores}
+\label{subsec:rotina_sensores}
 % TODO:
 % REALIZAR ANÁLISE DE FREQ. MÁXIMA DE OPERAÇÃO DOS ENCODERS VS BANDA DISPONIVEL NAS INTERRUPÇÕES RESPONSAVEIS PELA LEITURA DOS ENCODERS
 
@@ -174,7 +177,7 @@ Para o cálculo do módulo da velocidade de rotação do eixo do motor faz-se us
 
 \begin{itemize}
     \item $N_{PR} = 6$. Pois são $6$ interrupções por canal (monitorando ambas as bordas de subida e descida);
-    \item $T_{hf} = 1\mu{}s$. O contador de alta precisão do $ESP32$ possui, idealmente, uma resolução de $1\mu{}s$ [?].
+    \item $T_{hf} = 1\mu{}s$. O contador de alta precisão do $ESP32$ possui, idealmente, uma resolução de $1\mu{}s$ \cite{esp}.
 \end{itemize}
 
 A escolha do método de leitura por periodímetro ao em vez do frequencímetro se deu devido ser possível a leitura imediata da velocidade, pois basta apenas uma interrupção para se ter uma medição e também devido a boa precisão da leitura para abaixas velocidades, mesmo que isso piore para altas velocidades (como mostrado na Equação \ref{eq:erro_quantizacao_periodimetro}). 
@@ -285,7 +288,8 @@ Um pseudo código ilustrando a rotina de leitura dos sensores é apresentado a s
 \end{algorithmic}
 \end{algorithm}
 
-% \subsubsection{Rotina de Telemetria}
-% TODO:
-% NOTA:
+\subsubsection{Rotina de Telemetria}
+
+Foi utilizada para coletar os dados mostrados no \autoref{ch:resultados}.
+
 % Não sei se seria interessante falar dessa. Ao ser ativada ela inicia o armazenamento de vários dados, como velocidades, setpoint, velocidade filtrada, velocidade não filtrada, variáveis do filtro... grava esses dados durante x segundos e ao final envia tudo ao host via bluetooth
