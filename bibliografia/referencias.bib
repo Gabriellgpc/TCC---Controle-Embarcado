@@ -1,39 +1,6 @@
-@article{yu2011new,
-    title={The new frontier of smart grids},
-    author={Yu, Xinghuo and Cecati, Carlo and Dillon, Tharam and Simoes, M Godoy},
-    journal={IEEE Industrial Electronics Magazine},
-    volume={5},
-    number={3},
-    pages={49-63},
-    year={2011},
-    publisher={IEEE}
-}
-
-@inbook{ali2013smart,
-    author={Hossain, Md Rahat and Oo, Amanullah M. T. and Ali, A. B. M. Shawkat},
-    address={London},
-    booktitle={Smart grids: opportunities, developments, and trends},
-    chapter={2},
-    edition={1},
-    pages={23-44},
-    publisher={Springer},
-    title={Smart Grid},
-    year={2013}
-}
-
-@techreport{cgee,
-    title={{Redes elétricas inteligentes: contexto nacional}},
-    year={2012},
-    address={Brasília},
-    pages={172},
-    org-short={CGEE},
-    organization={Centro de Gest{\~a}o e Estudos Estrat{\'e}gicos}
-}
-
 % Referencias utilizadas:
 % http://people.csail.mit.edu/rudolph/Teaching/Articles/BTBook.pdf
 % https://lastminuteengineers.com/esp32-arduino-ide-tutorial/
-
 
 @article{teng1970theory,
   title={Theory and application of Kalman filtering},
@@ -42,7 +9,7 @@
 }
 
 % O trabalho mais parecido com o meu (que encontrei até o momento pelo menos).
-@ARTICLE{788480,  
+@ARTICLE{low_precision_encoder01,  
     author={ {Taeg-Joon Kweon} and  {Dong-Seok Hyun}},
     journal={IEEE Transactions on Power Electronics},  
     title={High-performance speed control of electric machine using low-precision shaft encoder},   
@@ -53,7 +20,7 @@
     doi={10.1109/63.788480}
 }
 
-@INPROCEEDINGS{339103,  
+@INPROCEEDINGS{low_precision_encoder02,  
     author={Y. {Hori}},  
     booktitle={Proceedings of IECON '93 - 19th Annual Conference of IEEE Industrial Electronics},   
     title={Robust and adaptive control of a servomotor using low precision shaft encoder},   
@@ -69,7 +36,7 @@
 % O trabalho apresenta análises comparativas sobre diferentes métodos de medição de velocidade e state stimation algorithms suitables for low resolution incremental encoders (aplicaveis para encoders de baixa resolução)
 % Apresenta uma analise bem completa sobre:
 % Frequency measurement and Period measurement
-@INPROCEEDINGS{4510607,  
+@INPROCEEDINGS{analise_incr_enc,  
     author={R. {Petrella} and M. {Tursini} and L. {Peretti} and M. {Zigliotto}},  
     booktitle={2007 International Aegean Conference on Electrical Machines and Power Electronics},   
     title={Speed measurement algorithms for low-resolution incremental encoder equipped drives: a comparative analysis}, 
@@ -85,7 +52,7 @@
 % Fala sobre os dois principais métodos de leitura dos encoders: leitura por contagem de período e por contagem de frequência.
 % Comenta sobre o uso de ambas, sendo uma melhor para baixas velocidades e a outra para altas velocidades. E comenta sobre o uso dessas de forma alternada.
 % A proposta deste trabalho é utilizar uma única técnica, porém realizando um janelamento adaptativo, basicamente é a contagem de pulsos (leitura por contagem de frequência) sendo o número de amostras escolhidos adaptativamente.
-@INPROCEEDINGS{6526510,  
+@INPROCEEDINGS{opt_encoder,  
     author={N. {Johnson} and K. J. {Mohan} and K. E. {Janson} and J. {Jose}},  
     booktitle={2013 International Mutli-Conference on Automation, Computing, Communication, Control and Compressed Sensing (iMac4s)},   
     title={Optimization of incremental optical encoder pulse processing},   
@@ -101,7 +68,7 @@
 % Possui uma seção sobre erros de quantização em encoders absolutos
 % Descobri aqui sobre alguns trabalhos que afirmam a natureza Gaussiana da incerteza proveniente da quantização:
 % Since the position error of the optical encoder can be regarded as Gaussian white noise [26], [27], the optimal estimation of the speed and load torque can be obtained by Kalman filter from a series of position signals with noises. 
-@ARTICLE{6936290,  
+@ARTICLE{observer_speed,  
     author={T. {Shi} and Z. {Wang} and C. {Xia}},  
     journal={IEEE Transactions on Industrial Electronics},  
     title={Speed Measurement Error Suppression for PMSM Control System Using Self-Adaption Kalman Observer},   
@@ -113,7 +80,7 @@
 
 % Trabalhos sobre o ruído das quantizações
 % referencias citadas no trabalho: T. {Shi} and Z. {Wang} and C. {Xia}
-@ARTICLE{1162977,  
+@ARTICLE{quantization_error01,  
     author={A. {Sripad} and D. {Snyder}},  
     journal={IEEE Transactions on Acoustics, Speech, and Signal Processing},   
     title={A necessary and sufficient condition for quantization errors to be uniform and white},   
@@ -124,7 +91,7 @@
     doi={10.1109/TASSP.1977.1162977}
 }
 
-@ARTICLE{746711,  
+@ARTICLE{quantization_error02,  
     author={R. C. {Kavanagh} and J. M. D. {Murphy}},  
     journal={IEEE Transactions on Instrumentation and Measurement},   
     title={The effects of quantization noise and sensor nonideality on digital differentiator-based rate measurement},   
@@ -135,11 +102,10 @@
     doi={10.1109/19.746711}
 }
 
-
 % Projeto para robôs da categoria Middle Size da Robocup;
 % Possui introdução sobre a Robocup e a categoria;
 % Apresenta uma boa visão geral do sistema como um todo.
-@INPROCEEDINGS{5418331,  
+@INPROCEEDINGS{robocup_middle_size,  
     author={A. S. {Conceção} and A. P. {Moreira} and P. J. {Costa}},  
     booktitle={2009 6th Latin American Robotics Symposium (LARS 2009)},   
     title={Design of a mobile robot for RoboCup Middle Size League},   
@@ -153,7 +119,7 @@
 
 % Estima a velocidade usando redes neurais.
 % O trabalho cita na introdução alguns outros trabalhos que fazem uso de redes neurais para identificar e/ou controlar a velocidade de rotação de motores.
-@INPROCEEDINGS{1619839,  
+@INPROCEEDINGS{speed_observer_IA,  
     author={ {Phan Quoc Dzung} and  {Le Minh Phuong}},  
     booktitle={2005 International Conference on Power Electronics and Drives Systems},   
     title={Control system DC motor with speed estimator by neural  networks},   
@@ -165,7 +131,7 @@
 }
 
 % Esse trabalho também fez uso de controlador feedforward/back.
-@INPROCEEDINGS{8398275,  
+@INPROCEEDINGS{feedforward_control,  
     author={Y. {Zhetpissov} and A. {Kaibaldiyev} and T. D. {Do}},  
     booktitle={2018 ELEKTRO},   
     title={PI anti-windup speed control of permanent magnet synchronous motor based on feedforward compensation},   
@@ -180,28 +146,29 @@
 % Trabalho sobre uma implementação simples de um controle de malha fechada voltado para robótica móvel.
 % O trabalho apresenta uma boa introdução sobre a importância do controle local de velocidade de giro dos motores e o movimento final do robô. Além de introduzir conceitos importantes relacionados aos encoders.
 % OBS.: TENHO APENAS O REVIEW DO TRABALHO. NÃO CONSEGUI ACESSO AO TRABALHO COMPLETO PELA CAPES CAFE.
-@InProceedings{10.1007/978-1-4020-6266-7_71,
-author="Sharan, R. V.
-and Onwubolu, G. C.
-and Singh, R.
-and Reddy, H.
-and Kumar, S.",
-editor="Sobh, Tarek
-and Elleithy, Khaled
-and Mahmood, Ausif
-and Karim, Mohammed",
-title="A Simple Speed Feedback System for Low Speed DC Motor Control in Robotic Applications",
-booktitle="Innovative Algorithms and Techniques in Automation, Industrial Electronics and Telecommunications",
-year="2007",
-publisher="Springer Netherlands",
-address="Dordrecht",
-pages="397--399",
-isbn="978-1-4020-6266-7"
+% 10.1007/978-1-4020-6266-7_71
+@InProceedings{simple_speed_feedback,
+    author="Sharan, R. V.
+    and Onwubolu, G. C.
+    and Singh, R.
+    and Reddy, H.
+    and Kumar, S.",
+    editor="Sobh, Tarek
+    and Elleithy, Khaled
+    and Mahmood, Ausif
+    and Karim, Mohammed",
+    title="A Simple Speed Feedback System for Low Speed DC Motor Control in Robotic Applications",
+    booktitle="Innovative Algorithms and Techniques in Automation, Industrial Electronics and         Telecommunications",
+    year="2007",
+    publisher="Springer Netherlands",
+    address="Dordrecht",
+    pages="397--399",
+    isbn="978-1-4020-6266-7"
 }
 
-% Livro bem amplo, embora um antigo...
+% Livro bem amplo, embora antigo...
 % Fala sobre: Controle, Observação de estado (Kalman) entre outros assuntos, focando na aplicabilidade e em implementações embarcados em microcontroladores
-@Inbook{Harashima1983,
+@Inbook{Harashima1983_control_observers,
 author="Harashima, Fumio",
 editor="Tzafestas, Spyros G.",
 title="Speed Control of Motor Drives via Microprocessors",
@@ -217,7 +184,7 @@ url="https://doi.org/10.1007/978-94-009-7007-6_13"
 }
 
 % Controlador FeedBack-FeedForward para controle de velocidade em motores DC
-@INPROCEEDINGS{8928655,  
+@INPROCEEDINGS{feedback_feedforward_control01,  
 author={I. {Okoro}},  
 booktitle={2019 IEEE PES/IAS PowerAfrica},   
 title={Feedback–Feedforward Compensation of a DC Motor},  
@@ -228,15 +195,15 @@ pages={385-389},
 doi={10.1109/PowerAfrica.2019.8928655}}
 
 % Esse não foi de nenhuma ajuda, mas tb pode servir de ref. como trabalhos que usaram feeforward and feedback control
-@INPROCEEDINGS{570901,  author={F. J. {Woehrer} and F. A. {Himmelstoss}},  booktitle={Proceedings of the 1996 IEEE IECON. 22nd International Conference on Industrial Electronics, Control, and Instrumentation},   title={Combined feedforward and feedback control of the field in a DC motor drive},   year={1996},  volume={1},  number={},  pages={59-65 vol.1},  doi={10.1109/IECON.1996.570901}}
+@INPROCEEDINGS{feedback_feedforward_control02,  author={F. J. {Woehrer} and F. A. {Himmelstoss}},  booktitle={Proceedings of the 1996 IEEE IECON. 22nd International Conference on Industrial Electronics, Control, and Instrumentation},   title={Combined feedforward and feedback control of the field in a DC motor drive},   year={1996},  volume={1},  number={},  pages={59-65 vol.1},  doi={10.1109/IECON.1996.570901}}
 
 % Um trabalho sobre controlador feedback em motor DC via PWM.
 % Focado na implementação em software embarcado.
 % Tem uma intro. sobre PWM, motores DCs e lista algumas alternativas de controladores.
-@INPROCEEDINGS{7475285,  author={K. S. {Ravi Kumar} and  {Jaideep} and  {Rohit} and  {Vikas}},  booktitle={2015 International Conference on Control, Instrumentation, Communication and Computational Technologies (ICCICCT)},   title={Microprocessor based closed loop speed control of DC motor using PWM},   year={2015},  volume={},  number={},  pages={255-257},  doi={10.1109/ICCICCT.2015.7475285}}
+@INPROCEEDINGS{pwm_control,  author={K. S. {Ravi Kumar} and  {Jaideep} and  {Rohit} and  {Vikas}},  booktitle={2015 International Conference on Control, Instrumentation, Communication and Computational Technologies (ICCICCT)},   title={Microprocessor based closed loop speed control of DC motor using PWM},   year={2015},  volume={},  number={},  pages={255-257},  doi={10.1109/ICCICCT.2015.7475285}}
 
 % sistema de controle embarcado em ARM.
 % O autor usou um RTOS também.
-@INPROCEEDINGS{4609655,  author={H. {Wu} and X. {Chen} and L. {Hu}},  booktitle={2008 ISECS International Colloquium on Computing, Communication, Control, and Management},   title={Embedded System of DC Motor Speed Control Based on ARM},   year={2008},  volume={2},  number={},  pages={123-126},  doi={10.1109/CCCM.2008.106}}
+@INPROCEEDINGS{embedded_control,  author={H. {Wu} and X. {Chen} and L. {Hu}},  booktitle={2008 ISECS International Colloquium on Computing, Communication, Control, and Management},   title={Embedded System of DC Motor Speed Control Based on ARM},   year={2008},  volume={2},  number={},  pages={123-126},  doi={10.1109/CCCM.2008.106}}
 
 
