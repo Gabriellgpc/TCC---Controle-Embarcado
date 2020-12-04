@@ -1,5 +1,5 @@
 \section{Sistemas de Controle}
-
+\label{sec:sistema_controle}
 O controle automático é um componente importante e intrínseco em sistemas de veículos espaciais, sistemas robóticos, modernos sistemas de manufatura e quaisquer operações industriais que envolvam o controle de temperatura, pressão, umidade, viscosidade, vazão etc \cite{ogata2011engenharia} [Okata:Eng.Controle Moderno]. Um problema de controle consiste em determinar uma forma de afetar um dado sistema físico de modo que seu comportamento atenda às especificações de desempenho previamente estabelecidas. Como, normalmente, não é possível alterar a estrutura funcional do sistema físico em questão, a satisfação das especificações de desempenho é atingida mediante o projeto e implementação de controladores (compensadores) [apostilha]. Algumas \textbf{definições/terminologias} comuns no contexto de sistema de controle são apresentadas a seguir.
 
 %[Okata:Eng.Controle Moderno]
@@ -92,13 +92,6 @@ Esse tipo de controlador pode ser utilizado em mais três formas básicas além 
 \end{figure}
 
 A Figura \ref{fig:diagrama_controlador_PID} ilustra em diagrama de blocos o uso do controlador PID. Onde $r(t)$ é o sinal de referência (\emph{set-point}), $y(t)$ é a saída da planta e $G(s) = Y(s)/U(s)$ é a função de transferência da panta.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figuras/ilustracoes/sistema_de_controle_completo.eps}
-    \caption{Diagrama de um sistema de controle \textit{Feedforward} + \textit{Backward}}
-    \label{fig:diagrama_sistema_de_controle_feedforward_backward}
-\end{figure}
 
 \subsection{Sistemas de Primeira Ordem}
 

@@ -1,6 +1,6 @@
 \section{Filtro de Kalman}
 % Introdução ao filtro de Kalman
-
+\label{sec:kalman}
 "A filtragem de \emph{Kalman} é um processo de estimativa de estado ótimo aplicado a um sistema dinâmico que envolve perturbações aleatórias. Mais precisamente, o filtro de \emph{Kalman} fornece um  procedimento recursivo linear, imparcial e que visa minimizar a variância do erro para estimar de forma otimizada o estado desconhecido de um sistema dinâmico de dados ruidosos obtidos em tempo real discreto. Tem sido amplamente utilizado em muitas áreas de aplicações industriais e governamentais, como sistemas de rastreamento, navegação por satélite, estimar trajetória de mísseis balísticos e radar." \cite{kalman:book}.\\
 
 O filtro de \emph{Kalman} usa um modelo dinâmico do sistema (por exemplo, leis físicas do movimento), entradas de controle conhecidas para esse sistema e várias medições sequenciais (como de sensores) para formar uma estimativa das quantidades variáveis do sistema (seu estado $\textbf{x}_k$) que é melhor do que a estimativa obtida usando apenas as medições. Como tal, é um algoritmo comum de fusão de sensores e fusão de dados \cite{kalman:wiki}, \cite{Kalman:ofid}.\\
