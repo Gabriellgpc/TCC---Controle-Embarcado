@@ -19,6 +19,7 @@ A escolha do método de leitura por periodímetro ao em vez do frequencímetro s
     \includegraphics[width=0.5\textwidth]{figuras/ilustracoes/sinal_enquadratura_uma_revolucao.eps}
     \caption{Ilustração do sinal em quadratura em uma revolução completa do eixo do motor no sentido horário.}
     \label{fig:ilustracao_uma_revolucao}
+    \fonte{Própria.}
 \end{figure}
 
 Já para se obter o sentido de rotação do motor, fez-se uso do padrão \emph{Gray Code} gerado pela diferença de fase entre os diferentes canais de um mesmo sensor. Uma maneira de fazer isso é ler os \emph{GPIO}'s associados aos canais do \emph{Encoder} e verificar o padrão em binário e inferir o sentido de rotação (conforme apresentado na \autoref{sec:encoders}). Porém esse procedimento apresentou uma alta taxa de erro na inferência do sentido para medias e altas velocidades. \\

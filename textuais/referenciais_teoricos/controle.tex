@@ -1,6 +1,6 @@
 \section{Sistemas de Controle}
 \label{sec:sistema_controle}
-O controle automático é um componente importante e intrínseco em sistemas de veículos espaciais, sistemas robóticos, modernos sistemas de manufatura e quaisquer operações industriais que envolvam o controle de temperatura, pressão, umidade, viscosidade, vazão etc \cite{ogata2011engenharia} [Okata:Eng.Controle Moderno]. Um problema de controle consiste em determinar uma forma de afetar um dado sistema físico de modo que seu comportamento atenda às especificações de desempenho previamente estabelecidas. Como, normalmente, não é possível alterar a estrutura funcional do sistema físico em questão, a satisfação das especificações de desempenho é atingida mediante o projeto e implementação de controladores (compensadores) [apostilha]. Algumas \textbf{definições/terminologias} comuns no contexto de sistema de controle são apresentadas a seguir.
+O controle automático é um componente importante e intrínseco em sistemas de veículos espaciais, sistemas robóticos, modernos sistemas de manufatura e quaisquer operações industriais que envolvam o controle de temperatura, pressão, umidade, viscosidade, vazão etc \cite{ogata2011engenharia}. Um problema de controle consiste em determinar uma forma de afetar um dado sistema físico de modo que seu comportamento atenda às especificações de desempenho previamente estabelecidas. Como, normalmente, não é possível alterar a estrutura funcional do sistema físico em questão, a satisfação das especificações de desempenho é atingida mediante o projeto e implementação de controladores. Algumas \textbf{definições/terminologias} comuns no contexto de sistema de controle são apresentadas a seguir.
 
 %[Okata:Eng.Controle Moderno]
 Segundo \cite{ogata2011engenharia}.
@@ -28,6 +28,7 @@ Segundo \cite{ogata2011engenharia}.
     \includegraphics[width=0.8\textwidth]{figuras/ilustracoes/diagrama_sistema_malha_aberta.eps}
     \caption{Diagrama de exemplificação de sistema de controle em malha aberta.}
     \label{fig:ilustracao_sistema_malha_aberta}
+    \fonte{Própria.}
 \end{figure}
 
 \textbf{Sistema de controle em malha fechada.} Difere essencialmente do em malha aberta, pois neste tipo a entrada do controlador é influenciada pela saída da planta (variável de processo) (Ver Figura \ref{fig:ilustracao_sistema_malha_fechada}). Esse tipo de sistema de controle também é denominado de controle com realimentação (controle com \emph{Feedback}). A relação entre a saída e a entrada de referência se dar por meio da comparação entre elas, utilizando a diferença como meio de controle.
@@ -37,10 +38,11 @@ Segundo \cite{ogata2011engenharia}.
     \includegraphics[width=0.8\textwidth]{figuras/ilustracoes/diagrama_sistema_malha_fechada.eps}
     \caption{Diagrama de exemplificação de sistema de controle em malha fechada.}
     \label{fig:ilustracao_sistema_malha_fechada}
+    \fonte{Própria.}
 \end{figure}
 
 
-Segundo [Okata] as principais vantagens do sistema de controle em malha aberta são:
+Também segundo \cite{ogata2011engenharia} as principais vantagens do sistema de controle em malha aberta são:
 \begin{enumerate}
     \item São de fácil construção/implementação e fácil manutenção.
     \item Não apresentam problemas de estabilidade.
@@ -89,6 +91,7 @@ Esse tipo de controlador pode ser utilizado em mais três formas básicas além 
     \includegraphics[width=\textwidth]{figuras/ilustracoes/diagrama_controlador_PID.eps}
     \caption{Diagrama de um sistema controlado por PID.}
     \label{fig:diagrama_controlador_PID}
+    \fonte{Própria.}
 \end{figure}
 
 A Figura \ref{fig:diagrama_controlador_PID} ilustra em diagrama de blocos o uso do controlador PID. Onde $r(t)$ é o sinal de referência (\emph{set-point}), $y(t)$ é a saída da planta e $G(s) = Y(s)/U(s)$ é a função de transferência da panta.
@@ -120,6 +123,7 @@ Sendo $K$ o ganho do sistema e a constante $T$ é conhecida como constante de te
     \includegraphics[width=0.7\textwidth]{figuras/ilustracoes/resposta_no_tempo_sistema_primeira_ordem.eps}
     \caption{Resposta no tempo ao degrau unitário de um sistema de primeira ordem com ganho unitário e contante de tempo $T$.}
     \label{fig:saida_sistema_primeira_ordem_no_tempo}
+    \fonte{Própria.}
 \end{figure}
 
 % O erro de regime é a diferença entre os sinais de entrada e de saída na região de regime da resposta. Ou seja, $t \xrightarrow{} \infty$.

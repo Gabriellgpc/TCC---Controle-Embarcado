@@ -17,7 +17,7 @@ Ele é constituído basicamente pelo enrolamento de armadura, enrolamento de cam
 \end{itemize}
 
 
-As máquinas de corrente contínua são bastante utilizadas em sistema de controle em razão do seu comportamento essencialmente linear [apostilha:modelagem]. O diagrama esquemático de uma máquina (motor ou gerador) CC é mostrado na figura \ref{fig:modelo_motor_dc}. O enrolamento de campo tem resistência $R_f$ e indutância $L_f$ e o enrolamento de armadura tem resistência $R_a$ e indutância $L_a$. As correntes e tensões nos enrolamentos de campo e de armadura $i_f$, $v_f$, $i_a$ e $v_a$, respectivamente. A tensão induzida na armadura é $v_g$. O torque e a velocidade angular no eixo do rotor são $\tau$ e $\omega$, respectivamente.
+As máquinas de corrente contínua são bastante utilizadas em sistema de controle em razão do seu comportamento essencialmente linear. O diagrama esquemático de uma máquina (motor ou gerador) CC é mostrado na figura \ref{fig:modelo_motor_dc}. O enrolamento de campo tem resistência $R_f$ e indutância $L_f$ e o enrolamento de armadura tem resistência $R_a$ e indutância $L_a$. As correntes e tensões nos enrolamentos de campo e de armadura $i_f$, $v_f$, $i_a$ e $v_a$, respectivamente. A tensão induzida na armadura é $v_g$. O torque e a velocidade angular no eixo do rotor são $\tau$ e $\omega$, respectivamente.
 
 A tensão induzida no enrolamento de armadura é dada por:
 
@@ -46,6 +46,7 @@ Motores geram potência mecânica, de forma que a velocidade de rotação $\omeg
     \includegraphics[width=0.5\textwidth]{figuras/ilustracoes/esquematico_motor_dc.eps}
     \caption{Diagrama esquemático de um motor CC.}
     \label{fig:modelo_motor_dc}
+    \fonte{Própria.}
 \end{figure}
 
 
@@ -57,12 +58,13 @@ A figura \ref{fig:modelo_motor_dc} apresenta o diagrama esquemático para um mot
 \end{align*}
 
 A constante $K_{m}$ é conhecida como a constante do motor. Devido a relação apresentada anterior é possível modelar o circuito equivalente do motor CC como na imagem \ref{fig:eq_eletrico_motorcc}.
-% figura retirada do livro texto da disciplina de modelagem.
+% figura baseada na fig. do livro texto da disciplina de modelagem.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{figuras/ilustracoes/circuito_equivalente_motor_cc.eps}
     \caption{Equivalente elétrico de um motor CC}
     \label{fig:eq_eletrico_motorcc}
+    \fonte{Própria.}
 \end{figure}
 
 Do circuito da figura \ref{fig:eq_eletrico_motorcc} extrai-se a seguinte função de transferência:
@@ -78,4 +80,4 @@ Caso a impedância da armadura seja desprezada $(L_a \xrightarrow{} 0)$:
     \label{eq:motor_transf_func}
 \end{equation}
 
-Portando, caso a impedância da armadura seja desprezada, a função de transferência do motor que relacionada a velocidade angular com a tensão de entrada se comporta como um sistema de primeira ordem. A maior dificuldade encontrada ao se controlar motores CC é a amplitude elevada da corrente de armadura, o que requer a utilização de sinal $v_a$ de entrada fornecido por uma fonte de alta potência [apostilha].
+Portando, caso a impedância da armadura seja desprezada, a função de transferência do motor que relacionada a velocidade angular com a tensão de entrada se comporta como um sistema de primeira ordem. A maior dificuldade encontrada ao se controlar motores CC é a amplitude elevada da corrente de armadura, o que requer a utilização de sinal $v_a$ de entrada fornecido por uma fonte de alta potência.

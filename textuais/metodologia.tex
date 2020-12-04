@@ -3,7 +3,7 @@
 
 Nessa seção será apresentado de forma técnica e descritiva a metologia utilizada para as implementações do sistema de controle, do observador/estimador de velocidade (filtro de \emph{Kalman}), dentre outras implementações que foram relevantes para o trabalho. Além disso será apresentado os componentes utilizados, bem como uma descrição sobre os robôs que serviram como aplicação alvo para o presente trabalho.\\
 
-Para a validação do trabalho, o sistema proposto (controlador e filtro de \emph{Kalman}) foi implementado no microcontrolador (ESP32) dos robôs de acionamento diferencial da equipe Poti. Faz-se análises em quatro experimentos em especifico. sendo eles:
+Para a validação do trabalho, o sistema proposto (controlador e filtro de \emph{Kalman}) foi implementado no microcontrolador (ESP32) dos robôs de acionamento diferencial da equipe Poti. Faz-se análises em quatro experimentos em especifico. São eles:
 
 \begin{itemize}
     \item \textbf{Experimento 1.} Testes em um sistema protótipo equivalente a um robô (Figura \ref{fig:robos_capa_aberta}), sem a parte estrutural e com alimentação por fonte de bancada (fornecendo a mesma tensão de alimentação das baterias nos robôs, $7.4$V).
@@ -17,6 +17,7 @@ Para a validação do trabalho, o sistema proposto (controlador e filtro de \emp
     \includegraphics[width=0.5\textwidth]{figuras/robo/protoboard.jpg}
     \caption{Protótipo do circuito eletrônico dos robôs.}
     \label{fig:prototipo}
+    \fonte{Própria.}
 \end{figure}
 
 Para todos os experimentos foram obtidos os resultados da rotina de calibração (parâmetros do controlador \emph{Feedforward} e ganho do controlador P) e alguns gráficos comparativos. \\
