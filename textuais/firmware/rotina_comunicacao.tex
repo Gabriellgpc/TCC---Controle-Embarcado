@@ -1,0 +1,46 @@
+\subsection{Rotina de Comunicação}
+\label{subsec:rotina_comunicacao}
+% TODO:
+% IDEIA: ILUSTRAR A INTERAÇÃO ENTRE A ROTINA PRINCIPAL E A INTERRUPÇÃO
+A rotina de comunicação opera em um \emph{loop} infinito no núcleo principal do microcontrolador e é responsável por tratar os telecomandos recebidos pelo \textit{Bluetooth}. Ao ser identificado um recebimento de mensagem pela sinal de interrupção da comunicação \textit{Bluetooth} é acionado a função de tratamento de interrupção correspondente que possui como única função encaminhar as mensagens válida (verificar cabeçalho) para a rotina principal de comunicação. Isso é feito para evitar sobrecarregar a interrupção (podendo atrapalhar as interrupções dos \emph{Encoders} devido a alta prioridade da interrupção).\\
+
+Na rotina principal a mensagem é interpretada e caso ela seja identificado um telecomando válido, será executado a devida resposta, conforme apresentado mais adiante.
+
+O protocolo implementado foi pensado para conter até três campos básicos, o \textbf{\textit{Header}} com 4 bits (servindo de preambulo), para ajudar a sincronizar os pacotes, o identificador de comando \textbf{\textit{CMD}} também com 4 bits, possibilitando assim até 16 comandos distintos e por fim, o campos de argumentos com tamanho variável. Foram implementados 7 comandos.
+
+\input{tabelas/defines_4protocol.tex}
+
+A Tabela \ref{tab:defines} apresenta as definições/nomenclaturas utilizadas nas descrições a seguir.
+
+\textbf{Comandos}
+\begin{itemize}
+    \item \textbf{CMD\_REQ\_CAL}:\\
+        \textit{Host} envia, para solicitar os dados provenientes da calibração do controlador \textit{Feedforward}. O escravo (robô) envia 4 \emph{Floats}, referente aos coeficientes do controlador.
+    \item \textbf{CMD\_REQ\_OMEGA}:\\
+        \textit{Host} envia, para solicitar as velocidades atuais de ambos os motores, em $rad/s$. O escravo responde com dois \emph{Floats}, referentes aos ômegas em cada motor.
+    \item \textbf{CMD\_CALIBRATION}:\\
+        \textit{Host} envia, para fazer com que o robô inicie sua rotina de calibração do controlador.
+    \item \textbf{CMD\_IDENTIFY}:\\
+        \textit{Host} envia, fazendo com que o robô inicia sua rotina de identificação (rotina que armazena as velocidades durante um certo período de tempo e envia para o \emph{Host}, útil para testes). O \textit{Host} deve enviar o \emph{Bitstream} da seguinte forma:\\
+        
+        \input{tabelas/cmd_identify.tex}
+        
+        Sendo o campos \textbf{Options} de 1 byte, contendo a informação de qual motor será feita a identificação e se deve ser usado o controlador.
+        
+        Ao concluir a rotina de identificação, o robô responde enviando o vetor de ômegas medidos, durante a rotina, para o \textit{Host}, que deve estar aguardando recebê-las. A quantidade de dados será $(timeout/steptime)*4$ bytes, portando o \textit{Host} deve estar aguardando exatamente essa quantidade de bytes.
+        
+        
+    \item \textbf{CMD\_SET\_POINT}:\\
+        
+        \input{tabelas/cmd_setpoint.tex}
+        
+        Neste os campos de \textbf{Sense\_x} indicam o sentido de rotação do motor, 0 para trás e 1 para rodar para frente (convertidos em sinal dos ômegas de Set-point), portando só ocupam 1 bit, já os campos referentes aos ômegas desejados ocupam 15 bits, sendo assim é possível enviar referências com uma precisão de $1.0/2^{15}$, já que as referências serão enviadas inteiras  (0 - $2^{15}$) e mapeadas de $-1.0$ a $1.0$, indicando uma porcentagem da referência da velocidade máxima do robô. Ou seja os campos referentes aos \textit{Set-points} contêm a porcentagem da velocidade máxima do robô.
+        
+    \item \textbf{CMD\_CONTROL\_SIGNAL}:\\
+        
+        O comando difere apenas o campo de \textbf{CMD} do comando anterior. O restante da estrutura é exatamente igual, pois a principal diferença ocorre no microcontrolador. Em vez dos campos referentes aos ômegas serem porcentagens da velocidade máxima que será convertido em \textit{Set-point} para o controlador, neste comando o robô irá interpretar esses campos como sendo sinais de controle (após convertê-los para \emph{Float} de $-1.0$ a $1.0$).
+        
+    \item \textbf{CMD\_PING}:\\
+        Neste comando o \textit{Host} pode enviar qualquer mensagem no campo de argumentos, pois o robô irá apenas responder com a mesma mensagem. Este comando é útil para testar conexão e testar a latência da conexão.
+    
+\end{itemize}
