@@ -2,22 +2,23 @@
 \setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
 \begin{resumo}
 
-Escreva seu resumo aqui. Ele deve ser parágrafo único e sem récuo na primeira linha.
- \lipsum[1-1]
+Este trabalho apresenta uma proposta e testa na prática um sistema de observação e controle de velocidade para motores de corrente contínua equipados com \emph{Encoders} de baixa resolução. O trabalho tem como aplicação alvo mini robôs de acionamento diferencial. O sistema proposto foi implementado no microcontrolador (\emph{ESP32}) e mostrou-se, pelos resultados experimentais, ser capaz de controlar a velocidade do par motor-roda de robôs com acionamento diferencial (com \emph{Encoders} rotativos de baixa precisão) de forma a conseguir reduzir as assimetrias desses. Fez-se uso de um esquema de controle com dois graus de liberdade, do tipo \emph{Feedforward}/\emph{Backward} e usou-se o filtro de \emph{Kalman} para realizar a estimativa da velocidade, com o objetivo de reduzir o erro de quantização dos sensores.
+
+% Escreva seu resumo aqui. Ele deve ser parágrafo único e sem récuo na primeira linha.
+%  \lipsum[1-1]
  
- \noindent
- \textbf{Palavras-chaves}: palavra1. palavra2. palavra3. 
+%  \noindent
+ \textbf{Palavras-chaves}: Controle Embarcado. Motores CC. Filtro de \emph{Kalman}. \emph{ESP32}. Robôs com acionamento diferencial.
 \end{resumo}
 % ---
 % resumo em inglês
 \begin{resumo}[Abstract]
 	\begin{otherlanguage*}{english}
 	
-	Write here your abstract with the same rules.
-	\lipsum[1-1]
+		This work presents a proposal and tests in practice a speed observer and controller for DC motors equipped with low-resolution Encoders. This work's target application was mini differential drive robots. The system was implemented in the microcontroller (ESP32) and shown, by experimental results, to be able to control the speed of the motor-wheel pairs of differential drive robots (with low-precision rotary encoders) way to reduce the asymmetries of them. A control scheme with two degrees of freedom, of the type Feedforward / Backward, was used, with the Kalman filter as the speed estimator, with the objective of reducing the sensors quantization error.
 	
 	\vspace{\onelineskip}
 	\noindent 
-	\textbf{Keywords}: keyword1. keyword2. keyword3.
+	\textbf{Keywords}: Embedded Control. DC Motors. Kalman Filter. ESP32. Robots with differential Drive.
 	\end{otherlanguage*}
 \end{resumo}

@@ -121,19 +121,22 @@ A resolução desses sensores influencia fortemente no desempenho e até mesmo n
 \label{sec:trabalhos_relacionados}
 % \section{Estado da Arte}
 
-O controle (embarcado ou não) de velocidade de motores e o estudo sobre observadores de estados voltados para estimação de velocidade, usando-se na maioria dos casos \emph{Encoders} incrementais como fonte de medição, são assuntos bastante estudados, tanto individualmente quanto em conjunto. No trabalho \cite{low_precision_encoder01} por exemplo, os autores demostram em por seus resultados uma melhora no desempenho do controle de velocidade do motor usando-se uma técnica de mínimos quadrados recursiva (\emph{recursive least squares}) para fazer o ajuste automático (\emph{Auto tunning}) dos parâmetros do controlador e os parâmetros do observador de velocidade por filtro de \emph{Kalman}. Essa ideia de se empregar estimadores de velocidade/posição e o uso de técnicas para identificação automática de certos parâmetros do sistema também são explorados em \cite{LOW_SPEED_CONTROL}, \cite{Y_HORI_01} e \cite{Y_HORI_02}.\\
+O controle (embarcado ou não) de velocidade de motores e o estudo sobre observadores de estados voltados para estimação de velocidade, usando-se na maioria dos casos \emph{Encoders} incrementais como fonte de medição, são assuntos bastante estudados, tanto individualmente quanto em conjunto. No trabalho \cite{low_precision_encoder01} por exemplo, os autores demostram em seus resultados uma melhora no desempenho do controle de velocidade do motor usando-se uma técnica de mínimos quadrados recursiva (\emph{recursive least squares}) para fazer o ajuste automático (\emph{Auto tunning}) dos parâmetros do controlador e os parâmetros do observador de velocidade por filtro de \emph{Kalman}. Essa ideia de se empregar estimadores de velocidade/posição e o uso de técnicas para identificação automática de certos parâmetros do sistema também são explorados em \cite{LOW_SPEED_CONTROL}, \cite{Y_HORI_01} e \cite{Y_HORI_02}.\\
 
-Em \cite{TOF:PIControl} os autores propõe um esquema de controle com dois graus de liberdade (equivalente ao \emph{Feedforward} + \emph{Backward}) de velocidade para servo motores equipados com \emph{Encoders} absolutos, com o objetivo de atingir uma boa relação entre a rejeição de perturbações e o rastreio da referência. Os autores também propõe o uso do filtro de \emph{Kalman} como estimar de estado.
+Em \cite{TOF:PIControl} os autores propõe um esquema de controle com dois graus de liberdade (equivalente ao \emph{Feedforward} + \emph{Backward}) de velocidade para servo motores equipados com \emph{Encoders} absolutos, com o objetivo de atingir uma boa relação entre a rejeição de perturbações e o rastreio da referência. Os autores também propõe o uso do filtro de \emph{Kalman} como estimar de estado.\\
 
 Em \cite{analise_incr_enc} os autores apresentam uma análise comparativa entre diferentes técnicas para estimar a velocidade e posição de rotores equipados com \emph{Encoders}. O trabalho de \cite{quantization_error01} se assemelha a esse, porém as técnicas analisadas por este são apenas as bordagens mais clássicas.\\
 
 % Microprocessor Based Closed Loop Speed
 % Control of DC Motor U sing
 % PWM
-Em \cite{pwm_control} os autores apresentam um trabalho prático que implementa um sistema de controle de velocidade para motores CC usando um microcontrolador e sinal PWM como sinal de controle.
+Em \cite{pwm_control} os autores apresentam um trabalho prático que implementa um sistema de controle de velocidade para motores CC usando um microcontrolador e sinal PWM como sinal de controle. Similarmente em \cite{embedded_control} os autores apresentam uma solução prática de um controle de velocidade de motores CC embarcado em um microcontrolador (ARM).\\
 
+% Feedback–Feedforward Compensation of a DC
+% Motor
+O trabalho \cite{feedback_feedforward_control01} propõe e mostra bons resultados para o uso de um esquema de controle do tipo \emph{Feedforward} \emph{Feedback} para controle de velocidade de motores CC, com o objetivo de contornar os problemas do controlador PID (controlador \emph{Feedback}) com relação a oscilações e problemas com mudanças nos parâmetros desse controlador.\\
 
-Diante do exposto, é notável que diferentes estratégias estão sendo implementadas com o mesmo intuito: ...
+Diante do exposto, é notável que diferentes estratégias estão sendo implementadas com o mesmo intuito: De utilizar técnicas para aprimorar a informação proveniente de sensores de baixa precisão, com o objetivo de melhorar o controle de velocidade/posição de motores; Unir diferentes esquemas de controle com a intenção de somar os pontos fortes e compensar os fracos de cada um deles; E de aplicar esses métodos de forma a serem eficientes computacionalmente, para ser factível suas implementações em arquiteturas micro-controladas.
 
 \section{Motivações e Objetivos}
 % V2
