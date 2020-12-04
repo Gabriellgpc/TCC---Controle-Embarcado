@@ -1,27 +1,52 @@
 \section{Filtro de Kalman}
 % Introdução ao filtro de Kalman
 
+"A filtragem de \emph{Kalman} é um processo de estimativa de estado ótimo aplicado a um sistema dinâmico que envolve perturbações aleatórias. Mais precisamente, o filtro de \emph{Kalman} fornece um  procedimento recursivo linear, imparcial e que visa minimizar a variância do erro para estimar de forma otimizada o estado desconhecido de um sistema dinâmico de dados ruidosos obtidos em tempo real discreto. Tem sido amplamente utilizado em muitas áreas de aplicações industriais e governamentais, como sistemas de rastreamento, navegação por satélite, estimar trajetória de mísseis balísticos e radar." \cite{kalman:book}.\\
+
+O filtro de \emph{Kalman} usa um modelo dinâmico do sistema (por exemplo, leis físicas do movimento), entradas de controle conhecidas para esse sistema e várias medições sequenciais (como de sensores) para formar uma estimativa das quantidades variáveis do sistema (seu estado $\textbf{x}_k$) que é melhor do que a estimativa obtida usando apenas as medições. Como tal, é um algoritmo comum de fusão de sensores e fusão de dados \cite{kalman:wiki}, \cite{Kalman:ofid}.\\
+
+O filtro produz uma estimativa do estado do sistema como uma média do estado previsto do sistema e da nova medição usando uma média ponderada. O objetivo dos pesos é que os valores com menor incerteza sejam mais "confiáveis". O ganho de \emph{Kalman} é o peso relativo dado às medições e estimativa do estado atual.\\
+
+Para o uso do filtro de \emph{Kalman} deve-se modelar o processo de acordo com a seguinte estrutura. Isso significa especificar as seguintes matrizes \cite{kalman:book}:
+
+\begin{itemize}
+    \item $\textbf{F}_k$: Modelo de transição de estado.
+    \item $\textbf{H}_k$: Modelo de Observação.
+    \item $\textbf{Q}_k$: Covariância do ruído do processo.
+    \item $\textbf{R}_k$: Covariância do ruído da observação(medição).
+    \item $\textbf{B}_k$: Modelo de entrada de controle (caso o sistema dinâmico tenha entrada). 
+\end{itemize}
 
 
-Modelo do sistema:
+Modelo do sistema para o filtro de \emph{Kalman}:
 \begin{equation}
-\textbf{x}_k = F_x x_{k-1} + B_k u_k + w_k; w_k \sim N(0, Q_k)
+\textbf{x}_k = \textbf{F}_x \textbf{x}_{k-1} + \textbf{B}_k \textbf{u}_k + \textbf{w}_k; \textbf{w}_k \sim N(0, \textbf{Q}_k)
 \end{equation}
 
-Modelo da medição:
+Sendo $\textbf{w}_k$ o ruído de processo, que assume-se ter uma distribuição normal de média zero e covariância $\textbf{Q}_k$. ($\textbf{w}_k \sim N(\textbf{0}, \textbf{Q}_k)$).
+
+Modelo da observação/medição será:
 \begin{equation}
-z_k = H_k x_k + v_k; v_k \sim N(0, R_k)
+\textbf{z}_k = \textbf{H}_k \textbf{x}_k + \textbf{v}_k; \textbf{v}_k \sim N(\textbf{0}, \textbf{R}_k)
 \end{equation}
 
-Predição:
+Sendo $\textbf{v}_k$ o ruído de observação, que assume-se ser um ruído gaussiano branco de média zero e covariância $\textbf{R}_k$. ($\textbf{v}_k \sim N(\textbf{0}, \textbf{R}_k)$).
+
+A filtragem é frequentemente divido como duas fases: Predição e Atualizar (Alguns autores também contam a etapa de medição como uma fase do algoritmo). A fase de previsão usa a estimativa anterior para produzir uma estimativa do estado atual. Na fase seguinte (de atualização), a previsão atual é combinada com as informações da medição atual para aprimorar a estimativa do estado. As etapas do filtro são apresentadas a seguir.
+
+\textbf{Predição}:
 \begin{align*}
-    \check{x}_k &= F_k \hat{x}_{k-1} + B_k u_k\\
-    \check{P}_k &= F_k \hat{P}_{k-1} F^T_k + Q_k
+    \check{\textbf{x}}_k &= \textbf{F}_k \hat{\textbf{x}}_{k-1} + \textbf{B}_k \textbf{u}_k\\
+    \check{\textbf{P}}_k &= \textbf{F}_k \hat{\textbf{P}}_{k-1} \textbf{F}^T_k + \textbf{Q}_k
 \end{align*}
 
-Atualização:
+Sendo $\check{\textbf{P}}$ uma predição da covariância do estado seguinte (predito, $\textbf{x}_k$).
+
+\textbf{Atualização}:
 \begin{align*}
-    K_k &= \check{P}_k H^T \left( H_k \check{P}_k H^T_k + R_k\right)^{-1}\\
-    \hat{x}_k &= \check{x}_k + K_k\left( z_k - H_k \check{x}_k \right)\\
-    \hat{P}_k &= \left(I - KH_k \right)\check{P}_k
+    \textbf{K}_k &= \check{\textbf{P}}_k \textbf{H}^T \left( \textbf{H}_k \check{\textbf{P}}_k \textbf{H}^T_k + \textbf{R}_k\right)^{-1}\\
+    \hat{\textbf{x}}_k &= \check{\textbf{x}}_k + \textbf{K}_k\left( \textbf{z}_k - \textbf{H}_k \check{\textbf{x}}_k \right)\\
+    \hat{\textbf{P}}_k &= \left(\textbf{I} - \textbf{KH}_k \right)\check{\textbf{P}}_k
 \end{align*}
+
+Uma observação importante sobre a etapa de atualização é que ela irá tender para o valor predito caso o ganho do filtro $\textbf{K}_k$ seja baixo (resultado de um alto erro na medição). O contrário também ocorre, ou seja, para medições precisas ($\textbf{R}_k$ baixo) o ganho do filtro tende a ser alto e a etapa de atualização vai tender a usar mais a informação da medição como estado ótimo ($\hat{\textbf{x}}$). 
