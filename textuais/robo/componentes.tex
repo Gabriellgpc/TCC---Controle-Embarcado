@@ -9,7 +9,7 @@
 % https://www.pololu.com/product/713
 % ESP32:
 
-São quatro o número de componentes básicos que compõem os robôs presentes neste trabalho, sendo eles: um par de atuadores (motor direito e esquerdo), um par de sensores de rotação (\textit{Encoders} magnéticos), um \emph{Driver} motor multicanal, um microcontrolador e bateria recarregável. Devido as características dos componentes escolhidos para o projeto, apenas estes quatro tipos foram suficiente para compor a eletrônica do robô de forma a respeitar as restrições dimensionais, realizar o controle dos motores de forma eficiência e com um bom período de amostragem e baixo gasto energético, além de um baixo custo financeiro. A seguir serão apresentados mais detalhes dos componentes supracitados.\\
+São quatro o número de componentes básicos que compõem os robôs presentes neste trabalho, sendo eles: um par de atuadores (motor direito e esquerdo), um par de sensores de rotação (\textit{Encoders} magnéticos), um \emph{Driver} motor multicanal, um microcontrolador e baterias recarregáveis. Devido as características dos componentes escolhidos para o projeto, apenas estes quatro tipos foram suficiente para compor a eletrônica do robô de forma a respeitar as restrições dimensionais, realizar o controle dos motores de forma eficiência e com um bom período de amostragem e baixo gasto energético, além de um baixo custo financeiro. A seguir serão apresentados mais detalhes dos componentes supracitados.\\
 
 \begin{figure}[H]
     \centering
@@ -30,7 +30,7 @@ Os sensores utilizados são \emph{Encoders} rotativos magnéticos do tipo increm
     \fonte{\cite{Pololu:Encoder_no_motor}.}
 \end{figure}
 
-A Figura \ref{fig:motor_com_encoder} mostra o motor escolhido equipado com o \textit{Encoder} magnético colocado em seu eixo estendido (placa de circuito impresso com um Imã natural em forma de disco), esse é um micro motor de $6$V com uma caixa de redução de $\approx 30:1$ da \textit{Pololu}\cite{Pololu}. A caixa de redução faz com que a resolução do sensor seja $30$ vezes maior no eixo do motor, ou seja, de uma resolução (máxima) de $12$PPR passa a gerar até o equivalente a $360$ pulsos por revolução.\\
+A Figura \ref{fig:motor_com_encoder} mostra o motor utilizado, equipado com o módulo que contem o \textit{Encoder} magnético em seu eixo estendido, esse é um micro motor de $6$V com uma caixa de redução de $\approx 30:1$ da \textit{Pololu}\cite{Pololu}. A caixa de redução faz com que a resolução do sensor seja $30$ vezes maior na roda (eixo da caixa de redução) do que no eixo do motor, ou seja, de uma resolução (máxima) de $12$PPR passa a gerar até o equivalente a $360$ pulsos por revolução.\\
 
 \begin{figure}[H]
     \centering
