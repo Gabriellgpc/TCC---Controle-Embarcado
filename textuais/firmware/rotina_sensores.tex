@@ -51,25 +51,33 @@ Para isso é considerado que o sistema $\omega(t)$ possui um comportamento de pr
 
 \begin{equation*}
 \begin{cases}
-    \textbf{x}_k = \left[ \omega_k \right]\\
-    \textbf{z}_k = [\omega_k]\\
-    \textbf{F}_k = [1]\\
-    \textbf{H}_k = [1]
+    \bm{x}_k = \left[ \omega_k \right]\\
+    \bm{z}_k = [\omega_k]\\
+    \bm{H}_k = [1]\\
+    \bm{F}_k = [e^{-\Delta{t}/\tau_{m}}]\\
+    \bm{B}_k = [K_{m}(1 - e^{-\Delta{t}/\tau_{m}})]
 \end{cases}
 \end{equation*}
 
-Considera-se também que os erros de quantização nas observações comportam-se como ruído gaussiano (essa consideração é possível de acordo com \cite{quantization_error_is_a_gaussian}).
+Sobre as equações apresentadas anterior: 
+\begin{itemize}
+    \item As matrizes $\bm{F_k}$ e $\bm{B_k}$ foram encontradas pela discretização do sistema de primeira ordem ($G(z) = \Omega(z)/U(z)$);
+    \item As etapas seguintes desta seção não usarão a notação de vetor (negrito) para se referir às matrizes do filtro, pois essas matrizes serão tratadas como escaladas.
+\end{itemize}
+
+No trabalho é feita a consideração de que os erros de quantização nas observações possuem um comportamento gaussiano (essa consideração é possível de acordo com \cite{quantization_error_is_a_gaussian}).
 
 Modelo da \textbf{medição}:
 \begin{align*}
-z_k = \omega_{medido}
+z_k = \omega_{\text{medido}}
 \end{align*}
 
 Com isso a etapa de \textbf{predição} do filtro torna-se:
 % MUDAR O SIMBOLO QUE FAZ REFERENCIA À ENTRADA (u) DE ENTRADA
 \begin{align*}
-    \check{\omega}_{k|k-1} &= \hat{\omega}_{k-1} + (u_k.K_m - \hat{\omega}_{k-1})\left( 1 - e^{-\Delta{t}/T_m} \right)\\
-    \check{P}_{k|k-1} &= \hat{P}_{k-1} + Q_k
+    \check{\omega}_{k|k-1} &= F_k \hat{\omega}_{k-1} + B_{k} u_{k}\\
+    % \check{\omega}_{k|k-1} &= \hat{\omega}_{k-1} + (u_k.K_m - \hat{\omega}_{k-1})\left( 1 - e^{-\Delta{t}/T_m} \right)\\
+    \check{P}_{k|k-1} &= F_{k}\hat{P}_{k-1}F^T_k + Q_k
 \end{align*}
 
 Sendo $u_k$ o sinal de controle no instante $k$.\\
@@ -92,7 +100,7 @@ Os parâmetros do filtro foram sintonizados experimentalmente, sendo eles:
 
 Foram utilizados estruturas do tipo fila (\emph{Queue} de tamanho 1, para não causar atrasos extras) para enviar e receber estruturas de dados entre as interrupções dos sensores e as demais rotinas em execução no ESP32. Dessa maneira foi possível evitar o uso de variáveis globais e permitiu a troca de informação com a rotina de controle que fica em execução em um núcleo diferente do microcontrolador. A fila de saída contém a estimativa da velocidade e a fila de entrada contém os parâmetros do filtro, bem como o último sinal de controle. Um pseudo código ilustrando a rotina de leitura dos sensores é apresentado a seguir:
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Rotina de Leitura dos Sensores}
 \label{alg:rotina_leitura_sensores}
 \begin{algorithmic}[1]

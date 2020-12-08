@@ -19,21 +19,21 @@
 
 \input{tabelas/calibracoes}
 
-A Tabela \ref{tab:resumo_calibracao} contém, para os quatro experimentos e para cada motor, os resultados da calibração: Ganho da planta $K_m$; Constante de tempo $\tau_m$ e o ganho do controlador proporcional que foi calculado para se atingir o polo desejado $S_d = -20$ ($\tau_{d} = 0.08$ s) no experimento 1 e nos experimentos 2,3 e 4 foram usados $S_d = -10$ ($\tau_{d} = 0.05$ s).
+A Tabela \ref{tab:resumo_calibracao} contém, para os quatro experimentos e para cada motor, os resultados da calibração: Ganho da planta $K_m$; Constante de tempo $\tau_m$ e o ganho do controlador proporcional que foi calculado para se atingir o polo desejado $S_d = -20$ ($\tau_{d} = 0.08$ s) no experimento 1 e $S_d = -10$ ($\tau_{d} = 0.05$ s) nos experimentos 2, 3 e 4.
 
 \begin{figure}[H]
     % \centering
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp01/curva_feedforward_esquerdo100.eps}
-    \caption{Curva $u(\omega)$ para o motor esquerdo.}
+    \caption{Curva $\omega_{ss}(u)$ para o motor esquerdo.}
     \label{fig:exp01:curva_feedforward_esquerdo}
     \end{subfigure}
     \hfill
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp01/curva_feedforward_direito100.eps}
-    \caption{Curva $u(\omega)$ para o motor direito.}
+    \caption{Curva $\omega_{ss}(u)$ para o motor direito.}
     \label{fig:exp01:curva_feedforward_direito}
     \end{subfigure}
     \begin{subfigure}{.5\textwidth}
@@ -103,14 +103,14 @@ Os gráficos comparativos para o experimento 1 estão exibidos na Figura \ref{fi
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp02/curva_feedforward_esquerdo100.eps}
-    \caption{Curva $u(\omega)$ para o motor esquerdo.}
+    \caption{Curva $\omega_{ss}(u)$ para o motor esquerdo.}
     \label{fig:exp02:curva_feedforward_esquerdo}
     \end{subfigure}
     \hfill
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp02/curva_feedforward_direito100.eps}
-    \caption{Curva $u(\omega)$ para o motor direito.}
+    \caption{Curva $\omega_{ss}(u)$ para o motor direito.}
     \label{fig:exp02:curva_feedforward_direito}
     \end{subfigure}
     \begin{subfigure}{.5\textwidth}
@@ -179,14 +179,14 @@ Os gráficos comparativos para o experimento 2 estão exibidos na Figura \ref{fi
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp03/curva_feedforward_esquerdo100.eps}
-    \caption{Curva $u(\omega)$ para o motor esquerdo.}
+    \caption{Curva $\omega_{ss}(u)$ para o motor esquerdo.}
     \label{fig:exp03:curva_feedforward_esquerdo}
     \end{subfigure}
     \hfill
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp03/curva_feedforward_direito100.eps}
-    \caption{Curva $u(\omega)$ para o motor direito.}
+    \caption{Curva $\omega_{ss}(u)$ para o motor direito.}
     \label{fig:exp03:curva_feedforward_direito}
     \end{subfigure}
     \begin{subfigure}{.5\textwidth}
@@ -243,14 +243,14 @@ Os gráficos comparativos para o experimento 3 estão exibidos na Figura \ref{fi
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp04/curva_feedforward_esquerdo100.eps}
-    \caption{Curva $u(\omega)$ para o motor esquerdo.}
+    \caption{Curva $\omega_{ss}(u)$ para o motor esquerdo.}
     \label{fig:exp04:curva_feedforward_esquerdo}
     \end{subfigure}
     \hfill
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp04/curva_feedforward_direito100.eps}
-    \caption{Curva $u(\omega)$ para o motor direito.}
+    \caption{Curva $\omega_{ss}(u)$ para o motor direito.}
     \label{fig:exp04:curva_feedforward_direito}
     \end{subfigure}
     \begin{subfigure}{.5\textwidth}
@@ -311,5 +311,5 @@ Os gráficos comparativos para o experimento 4 estão exibidos na Figura \ref{fi
     \item Já pela Figura \ref{fig:exp04:controle} nota-se para ambos os motores:
         Que a resposta do sistema controlado está bem próximo da referência $\omega_{ref}$ e que a constante de tempo $\tau$ está como o desejado ($0.05s$).
     \item Por fim a Figura \ref{fig:exp04:antes_vs_depois} compara a resposta do sistema com o controlador+observador, com os mesmos sem estes. \\
-        Nota-se que os conjuntos motor-roda esquerdo e direito apresentam assimetrias significativas, principalmente com relação ao  ganho (o conjunto direito apresenta-se com um ganho maior). Porém a resposta controlada mostrou que se conseguiu diminuir significativamente essas assimetrias nesse experimento.
+        Nota-se que os conjuntos motor-roda esquerdo e direito apresentam assimetrias significativas, principalmente com relação ao  ganho (o conjunto direito apresenta-se com um ganho maior). Porém a resposta controlada mostra que se conseguiu diminuir significativamente essas assimetrias nesse experimento.
 \end{itemize}

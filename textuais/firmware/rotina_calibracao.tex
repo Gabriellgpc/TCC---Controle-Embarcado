@@ -15,7 +15,7 @@ A rotina de calibração consiste em três etapas que são repetidas para todas 
 Ao se encerrar a coleta destes pontos ($\omega_{ss} = 0$ detectado) é realizado uma regressão linear por mínimos quadrados, tendo $u$ no eixo das ordenadas e $\omega$ no eixo das abscisas, o coeficiente angular dessa reta relaciona a velocidade angular ($\omega$) com o sinal de controle ($u$), já o coeficiente linear representa a zona morta, ou seja, o menor $\omega$ que pode iniciar o giro do motor (\emph{Dead Zone ($D$)}). A regressão linear é possível, apesar do comportamento não linear (como também explorado em \cite{dead_zone}) entre a velocidade e o sinal de controle e ilustrado na Figura \ref{fig:ilustracao_omega_x_pwm}, se analisado um sentido de rotação por vez.
 
 \begin{equation}
-    \omega_{ss}(u) = u.\alpha + D
+    \omega_{ss}(u) = \alpha(u + D)
     % u(\omega) = a\omega + b
     \label{eq:omega_x_sinal_de_controle}
 \end{equation}
@@ -23,7 +23,7 @@ Ao se encerrar a coleta destes pontos ($\omega_{ss} = 0$ detectado) é realizado
 Com os parâmetros dessa reta (Equação \ref{eq:omega_x_sinal_de_controle}) é possível estimar o ganho de malha aberta da planta da seguinte forma:
 
 \begin{equation}
-    K_m = u_{max}.\alpha + D
+    K_m = \alpha(u_{max} + D)
     % K_m = \frac{(u_{max} - b)}{a}
 \end{equation}
 

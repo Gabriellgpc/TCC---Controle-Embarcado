@@ -1,6 +1,6 @@
 \section{Mínimos Quadrados}
 \label{sec:MMQ}
-De maneira geral, a ideia por trás do método dos mínimos quadrados (MMQ)  é de encontrar os coeficientes da(s) funções de base que minimizem o erro, ou seja, com o menor erro possível associado à representação \cite{MMQ}. Assim, dado que queremos obter a equação e possuímos vetores de dados $x$ e $y$, e queremos relacioná-los. Por exemplo, caso queira-se aproximar o conjunto de dados para a reta:
+De maneira geral, a ideia por trás do método dos mínimos quadrados (MMQ) é de encontrar os coeficientes da(s) funções de base que minimizem o erro, ou seja, com o menor erro possível associado à representação \cite{MMQ}. Assim, dado que queremos obter a equação e possuímos vetores de dados $x$ e $y$, e queremos relacioná-los. Por exemplo, caso queira-se aproximar o conjunto de dados para a reta:
 
 \begin{equation}
     y = ax + b.
@@ -30,21 +30,23 @@ sendo,
         \vdots & \vdots\\
         x_n & 1\\
     \end{bmatrix},
-    \alpha =
+    \bm{\alpha} =
     \begin{bmatrix}
         a\\
         b\\
     \end{bmatrix}
 \end{equation*}
 
-A ideia por trás do método de mínimos quadrados é minimizar o erro $e$. Sabendo que o espaço gerado por tal plano ortogonal será dado pela matriz $X^T$ , então queremos impor que o vetor
-de erro $\textbf{e}$ será nulo, logo:
+A ideia por trás do método de mínimos quadrados é minimizar o erro $\bm{e}$. Sabendo que o espaço gerado por tal plano ortogonal será dado pela matriz $\bm{X^T}$, então queremos impor que o vetor de erro $\bm{e}$ será nulo, logo:
 
-\[\textbf{X}^T\textbf{e} = \textbf{0}\]
+% \[\textbf{X}^T\textbf{e} = \textbf{0}\]
+
+\[\bm{X^T e = 0}\]
 
 Como,
 
-\[\textbf{e} = \textbf{Y} - \textbf{X}\hat{\alpha}\]
+% \[\textbf{e} = \textbf{Y} - \textbf{X}\hat{\alpha}\]
+\[\bm{e = Y - X\hat{\alpha}}\]
 
 Então temos,
 
@@ -53,11 +55,11 @@ Então temos,
 
 Sendo,
 
-\[\mb{\hat{\alpha}} =
+\[\bm{\hat{\alpha}} =
 \begin{bmatrix}
  \hat{a}\\
  \hat{b}\\
 \end{bmatrix}
 \]
 
-Os elementos do vetor $\bm{\hat{{\alpha}}}$, serão os coeficientes da equação \ref{eq:pol1} que minimizarão o erro, ou seja, são os coeficientes da reta que melhor representam o conjunto de dados.
+Os elementos do vetor $\bm{\hat{{\alpha}}}$ serão os coeficientes da equação \ref{eq:pol1} que minimizarão o erro, ou seja, são os coeficientes da reta que melhor representam o conjunto de dados.
