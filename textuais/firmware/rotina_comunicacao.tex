@@ -2,11 +2,11 @@
 \label{subsec:rotina_comunicacao}
 % TODO:
 % IDEIA: ILUSTRAR A INTERAÇÃO ENTRE A ROTINA PRINCIPAL E A INTERRUPÇÃO
-A rotina de comunicação opera em um \emph{loop} infinito no núcleo principal do microcontrolador e é responsável por tratar os telecomandos recebidos pelo \textit{Bluetooth}. Ao ser identificado um recebimento de mensagem pela sinal de interrupção da comunicação \textit{Bluetooth} é acionado a função de tratamento de interrupção correspondente que possui como única função encaminhar as mensagens válida (verificar cabeçalho) para a rotina principal de comunicação. Isso é feito para evitar sobrecarregar a interrupção (podendo atrapalhar as interrupções dos \emph{Encoders} devido a alta prioridade da interrupção).\\
+A rotina de comunicação opera em um \emph{loop} infinito no núcleo principal do microcontrolador e é responsável por tratar os telecomandos recebidos pelo \textit{Bluetooth}. Ao ser identificado um recebimento de mensagem pelo sinal de interrupção da comunicação \textit{Bluetooth} é acionada a função de tratamento de interrupção correspondente que possui como única função encaminhar as mensagens válidas (verificar cabeçalho) para a rotina principal de comunicação. Isso é feito para evitar sobrecarregar a interrupção (podendo atrapalhar as interrupções dos \emph{Encoders} devido à alta prioridade da interrupção).\\
 
-Na rotina principal a mensagem é interpretada e caso ela seja identificado um telecomando válido, será executado a devida resposta, conforme apresentado mais adiante.
+Na rotina principal a mensagem é interpretada e caso ela seja identificado como um telecomando válido, será executado a devida resposta, conforme apresentado mais adiante.
 
-O protocolo implementado foi pensado para conter até três campos básicos, o \textbf{\textit{Header}} com 4 bits (servindo de preambulo), para ajudar a sincronizar os pacotes, o identificador de comando \textbf{\textit{CMD}} também com 4 bits, possibilitando assim até 16 comandos distintos e por fim, o campos de argumentos com tamanho variável. Foram implementados 7 comandos.
+O protocolo implementado foi pensado para conter até três campos básicos, o \textbf{\textit{Header}} com 4 bits (servindo de preâmbulo), para ajudar a sincronizar os pacotes, o identificador de comando \textbf{\textit{CMD}} também com 4 bits, possibilitando assim até 16 comandos distintos e por fim, o campo de argumentos com tamanho variável. Foram implementados 7 comandos.
 
 \input{tabelas/defines_4protocol.tex}
 

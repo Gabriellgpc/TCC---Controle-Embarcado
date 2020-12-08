@@ -1,12 +1,12 @@
 \chapter[Metodologia]{Metodologia}
 \label{ch:metodologia}
 
-Nessa seção será apresentado de forma técnica e descritiva a metologia utilizada para as implementações do sistema de controle, do observador/estimador de velocidade (filtro de \emph{Kalman}), dentre outras implementações que foram relevantes para o trabalho. Além disso será apresentado os componentes utilizados, bem como uma descrição sobre os robôs que serviram como aplicação alvo para o presente trabalho.\\
+Nessa seção será apresentada de forma técnica e descritiva a metologia utilizada para as implementações do sistema de controle, do observador/estimador de velocidade (filtro de \emph{Kalman}), dentre outras implementações que foram relevantes para o trabalho. Além disso serão apresentados os componentes utilizados, bem como uma descrição sobre os robôs que serviram como aplicação alvo para o presente trabalho.\\
 
-Para a validação do trabalho, o sistema proposto (controlador e filtro de \emph{Kalman}) foi implementado no microcontrolador (ESP32) dos robôs de acionamento diferencial da equipe Poti. Faz-se análises em quatro experimentos em especifico. São eles:
+Para a validação do trabalho, o sistema proposto (controlador e filtro de \emph{Kalman}) foi implementado no microcontrolador (ESP32) dos robôs de acionamento diferencial da equipe Poti. Faz-se análises em quatro experimentos em específico. São eles:
 
 \begin{itemize}
-    \item \textbf{Experimento 1.} Testes em um sistema protótipo equivalente a um robô (Figura \ref{fig:robos_capa_aberta}), sem a parte estrutural e com alimentação por fonte de bancada (fornecendo a mesma tensão de alimentação das baterias nos robôs, $7.4$V).
+    \item \textbf{Experimento 1.} Testes em um sistema protótipo equivalente a um robô (Figura \ref{fig:prototipo}), sem a parte estrutural e com alimentação por fonte de bancada (fornecendo a mesma tensão de alimentação das baterias nos robôs, $7.4$V).
     \item \textbf{Experimento 2.} Testes no robô 1 (robô com a \emph{Tag} verde na Figura \ref{fig:robos_capa_aberta}) sem contato com o chão.
     \item \textbf{Experimento 3.} Testes no robô 2 (robô com a \emph{Tag} rosa na Figura \ref{fig:robos_capa_aberta}).
     \item \textbf{Experimento 4.} Robô 1 no chão.
@@ -22,7 +22,7 @@ Para a validação do trabalho, o sistema proposto (controlador e filtro de \emp
 
 Para todos os experimentos foram obtidos os resultados da rotina de calibração (parâmetros do controlador \emph{Feedforward} e ganho do controlador P) e alguns gráficos comparativos. \\
 
-Os gráficos visam comparar os pares de motores (motor esquerdo e direito) com relação à: velocidades medidas versus velocidades filtradas; sistema com controle versus sistema em malha aberta; comportamento observado pelas medições versus comportamento teórico do sistemo. Esses resultados foram obtidos para diferentes valores de \emph{Set points}, porém no trabalho será mostrado apenas os resultados para as máximas velocidades, pois devido a leitura dos \emph{Encoders} ser pelo método do periodímetro as altas velocidades apresentam o maior erro relativo à $\omega$ (como apresentado na \autoref{sec:encoders}), podendo assim, ser o \emph{Set point} mais problemático para o estimador de estado, consequentemente, para o sistema de controle também.\\
+Os gráficos visam comparar os pares de motores (motor esquerdo e direito) com relação à: velocidades medidas versus velocidades filtradas; sistema com controle versus sistema em malha aberta; comportamento observado pelas medições versus comportamento teórico do sistemo. Esses resultados foram obtidos para diferentes valores de \emph{Set points}, porém no trabalho serão mostrados apenas os resultados para as máximas velocidades, pois devido a leitura dos \emph{Encoders} ser pelo método do periodímetro as altas velocidades apresentam o maior erro relativo à $\omega$ (como apresentado na \autoref{sec:encoders}), podendo assim, ser o \emph{Set point} mais problemático para o estimador de estado, consequentemente, para o sistema de controle também.\\
 
 % As seções seguintes deste capítulo visam apresentar uma descrição detalha a respeito do software embarcado e sobre os robôs.
 

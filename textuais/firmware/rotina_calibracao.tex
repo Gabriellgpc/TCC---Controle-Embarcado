@@ -10,18 +10,21 @@ A rotina de calibração consiste em três etapas que são repetidas para todas 
 % FIGURAS ILUSTRANDO O COMPORTAMENTO GERAL DAS FUNÇÕES QUE ESTÃO SENDO USADAS NA INTERPOLAÇÃO
 % PSEUDO CÓDIGOS TALVEZ
 
-\textbf{ETAPA 1.} Estimar a zona morta e o ganho da planta em malha aberta. Para isso é realizado a coleta de $N$ pontos ($\omega$,$u$), o primeiro ponto é coletado para $u = \pm1$(valor máximo no sentido de giro atual) e é realizado sucessivos decréscimos neste valor até a parada do motor ($\omega = 0$). A aquisição destes pontos ocorre da maior velocidade para a menor, pois a zona morta será mais baixa neste sentido, devido a inercia do motor.\\
+\textbf{ETAPA 1.} Estimar a zona morta e o ganho da planta em malha aberta. Para isso é realizado a coleta de $N$ pontos ($\omega$,$u$), o primeiro ponto é coletado para $u = \pm1$(valor máximo no sentido de giro atual) e são realizados sucessivos decréscimos neste valor até a parada do motor ($\omega = 0$). A aquisição destes pontos ocorre da maior velocidade para a menor, pois a zona morta será mais baixa neste sentido, devido à inércia do motor.\\
 
-Ao se encerrar a coleta destes pontos ($\omega_{ss} = 0$ detectado) é realizado uma regressão linear por mínimos quadrados, tendo $\omega$ no eixo das ordenadas e $u$ no eixo das abscisas, o coeficiente angular dessa reta relaciona a velocidade angular ($\omega$) com o sinal de controle ($u$), já o coeficiente linear representa a zona morta, ou seja, o menor $u$ que pode iniciar o giro do motor (\emph{Dead None ($D$)}). A regressão linear é possível, apesar do comportamento não linear (como também explorado em \cite{dead_zone}) entre a velocidade e o sinal de controle e ilustrado na Figura \ref{fig:ilustracao_omega_x_pwm}, se analisado um sentido de rotação por vez.
-
-\begin{equation*}
-    u(\omega) = a\omega + b
-\end{equation*}
-
-Com esses parâmetros dessa reta é possível estimar o ganho de malha aberta da planta da seguinte forma:
+Ao se encerrar a coleta destes pontos ($\omega_{ss} = 0$ detectado) é realizado uma regressão linear por mínimos quadrados, tendo $u$ no eixo das ordenadas e $\omega$ no eixo das abscisas, o coeficiente angular dessa reta relaciona a velocidade angular ($\omega$) com o sinal de controle ($u$), já o coeficiente linear representa a zona morta, ou seja, o menor $\omega$ que pode iniciar o giro do motor (\emph{Dead Zone ($D$)}). A regressão linear é possível, apesar do comportamento não linear (como também explorado em \cite{dead_zone}) entre a velocidade e o sinal de controle e ilustrado na Figura \ref{fig:ilustracao_omega_x_pwm}, se analisado um sentido de rotação por vez.
 
 \begin{equation}
-    K = \frac{(u_{max} - b)}{a}
+    \omega_{ss}(u) = u.\alpha + D
+    % u(\omega) = a\omega + b
+    \label{eq:omega_x_sinal_de_controle}
+\end{equation}
+
+Com os parâmetros dessa reta (Equação \ref{eq:omega_x_sinal_de_controle}) é possível estimar o ganho de malha aberta da planta da seguinte forma:
+
+\begin{equation}
+    K_m = u_{max}.\alpha + D
+    % K_m = \frac{(u_{max} - b)}{a}
 \end{equation}
 
 A Figura \ref{fig:ilustracao_omega_x_pwm} apresenta uma ilustração da relação entre o \emph{PWM} (sinal de controle) e a velocidade de regime $\omega_{ss}$ do motor.
@@ -29,7 +32,7 @@ A Figura \ref{fig:ilustracao_omega_x_pwm} apresenta uma ilustração da relaçã
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{figuras/ilustracoes/omega_x_sinal_controle.eps}
-    \caption{Comportamento da curva $u(\omega)$.}
+    \caption{Comportamento da curva $\omega_{ss}(u)$.}
     \label{fig:ilustracao_omega_x_pwm}
     \fonte{Própria.}
 \end{figure}
@@ -47,16 +50,16 @@ A Figura \ref{fig:ilustracao_omega_x_pwm} apresenta uma ilustração da relaçã
 
 Convertendo $\omega(t)$ para $y_{aux}(t)$ o coeficiente angular resultante da interpolação linear será: $coef.angular = -\frac{1}{T_m}$, dessa forma obtemos a constante de tempo.\\
 
-\textbf{ETAPA 3.} Calcular os parâmetros do controlador \textit{Feedback}. O ganho do controlador proporcional se relaciona com o polo (inverso do negativo da constante de tempo desejada) desejado para o sistema em malha fechada, por meio da relação \ref{eq:calculo_do_Kp}. Esse cálculo só é possível devido a identificação dos parâmetros da planta resultante das etapas anteriores. O polo desejado para todas as configurações da planta é uma constante pré-definida, que para os experimentos apresentados neste trabalho foi de $-20$ (equivalente a um $\tau_m$ desejado de 0.08s).\\
+\textbf{ETAPA 3.} Calcular os parâmetros do controlador \textit{Feedback}. O ganho do controlador proporcional se relaciona com o polo (inverso do negativo da constante de tempo desejada) desejado para o sistema em malha fechada, por meio da relação \ref{eq:calculo_do_Kp}. Esse cálculo só é possível devido à identificação dos parâmetros da planta resultante das etapas anteriores. O polo desejado para todas as configurações da planta é uma constante pré-definida, que para os experimentos apresentados neste trabalho foi de $-20$ (equivalente a um $\tau_m$ desejado de 0.08s).\\
 
 \begin{equation}
     K_p = -\frac{\tau_m S_d + 1}{K_m}
     \label{eq:calculo_do_Kp}
 \end{equation}
 
-Sendo $S_d$ o polo desejado para o sistema o sistema em malha fechada, que é equivalente à $S_d = -1/\tau_{m_{d}}$.
+Sendo $S_d$ o polo desejado para o sistema em malha fechada, que é equivalente à $S_d = -1/\tau_{m_{d}}$.
     
 
 Ao se passar por todas as configurações de motor/sentido a rotina seleciona a menor das velocidades máximas apresentada por alguma dessas configurações e armazena esta velocidade como sendo a velocidade máxima atingida pelos motores deste robô (na prática é armazenado 90\% desse valor, para dar uma margem de factibilidade), isso é importante, para assegurar que a referencia $\omega_{ref}$ seja factível para todas as configurações. \\
 
-Por fim os resultados são armazenados na memória permanente do microcontrolador, sendo atualizado/sobrescrita apenas ao final da próxima chamada da rotina de calibração.
+Por fim os resultados são armazenados na memória permanente do microcontrolador, sendo atualizado/sobrescritos apenas ao final da próxima chamada da rotina de calibração.

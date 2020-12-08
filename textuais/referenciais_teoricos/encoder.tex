@@ -13,7 +13,7 @@
 % FALAR DO GRAY CODE
 % FALAR DO ERRO DE QUANTIZAÇÃO
 
-As saídas de um \emph{Encoder} incremental são, normalmente, duas ondas quadradas defasadas em $90^\circ$ uma da outra (em quadratura). Essa diferença de fase nos permite medir o sentido de rotação. Abordagens mais eficientes de leitura desses sensores é por meio da detecção das bordas dessas ondas, pois isso permite quadruplicar o número de pulsos por revolução (NPR) \cite{quantization_error01}. Existem dois métodos básicos para se realizar a medição da velocidade por meio desses sensores, são eles: \textbf{frequencímetro} e \textbf{periodímetro}. 
+As saídas de um \emph{Encoder} incremental são, normalmente, duas ondas quadradas defasadas em $90^\circ$ uma da outra (em quadratura). Essa diferença de fase nos permite medir o sentido de rotação. Abordagens mais eficientes de leitura desses sensores são por meio da detecção das bordas dessas ondas, pois isso permite quadruplicar o número de pulsos por revolução (NPR) \cite{quantization_error01}. Existem dois métodos básicos para se realizar a medição da velocidade por meio desses sensores, são eles: \textbf{frequencímetro} e \textbf{periodímetro}. 
 
 Na medição por frequência (\textbf{frequencímetro}), conta-se o número de pulsos que ocorreram em um determinado período de tempo fixo. Com isso a velocidade pode ser obtida pela seguinte aproximação:
 
@@ -21,10 +21,10 @@ Na medição por frequência (\textbf{frequencímetro}), conta-se o número de p
     \omega = \frac{d\theta}{dt} \cong \frac{\Delta{\theta}}{T} \cong \frac{2 \pi \Delta{N}}{N_{PR}T}[rad.s^{-1}] \xrightarrow{} \frac{60 \Delta{N}}{N_{PR} T} [RPM]
 \end{equation}
 
-Sendo $N_{PR}$ o número de pulsos por revolução e $\Delta{N}$ é o número de pulsos que aconteceram dentro da janela de tempo $T$. Existe um erro de quantização nesse método de leitura devido a variação de ângulo medida ser sempre um múltiplo inteiro de $ 2\pi/N_{PR}$. O erro de quantização $\Delta{\omega}$ pode ser modelado pela seguinte equação:
+Sendo $N_{PR}$ o número de pulsos por revolução e $\Delta{N}$ é o número de pulsos que aconteceram dentro da janela de tempo $T$. Existe um erro de quantização nesse método de leitura devido à variação de ângulo medida ser sempre um múltiplo inteiro de $ 2\pi/N_{PR}$. O erro de quantização $\Delta{\omega}$ pode ser modelado pela seguinte equação:
 
 \begin{equation}
-    \Delta{\omega} = \frac{2\pi}{N_{p}T}[rad.s^{-1}] \xrightarrow{} \frac{60}{N_{PR}T}[RPM]
+    \Delta{\omega} = \frac{2\pi}{N_{PR}T}[rad.s^{-1}] \xrightarrow{} \frac{60}{N_{PR}T}[RPM]
     \label{eq:erro_de_quantizacao_frequencimetro}
 \end{equation}
 

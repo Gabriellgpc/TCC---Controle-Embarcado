@@ -3,7 +3,7 @@
 % TODO:
 % REALIZAR ANÁLISE DE FREQ. MÁXIMA DE OPERAÇÃO DOS ENCODERS VS BANDA DISPONIVEL NAS INTERRUPÇÕES RESPONSAVEIS PELA LEITURA DOS ENCODERS
 
-Há duas interrupções associadas aos sinais provenientes dos \emph{Encoders} rotativos, uma para cada motor, cujo objetivo é medir a velocidade de rotação do eixo do motor ($\omega_{medido}$) bem como aplicar o filtro de \emph{Kalman} para uma melhor estimativa da mesma ($\hat{\omega}$). As interrupções são provocadas pelas bordas dos pulsos de ambos os canais, fazendo com que a resolução do sensor seja utilizada ao máximo, pois dessa maneira os sensores que possuem uma resolução de três pulsos por revolução (em cada canal, ver Figura \ref{fig:ilustracao_uma_revolucao}) consiga acionar doze (12) vezes a interrupção que irá computar o $\omega_{motor}$, passando assim a ser ter uma resolução equivalente à doze pulsos por revolução.\\
+Há duas interrupções associadas aos sinais provenientes dos \emph{Encoders} rotativos, uma para cada motor, cujo objetivo é medir a velocidade de rotação do eixo do motor ($\omega_{medido}$) bem como aplicar o filtro de \emph{Kalman} para uma melhor estimativa da mesma ($\hat{\omega}$). As interrupções são provocadas pelas bordas dos pulsos de ambos os canais, fazendo com que a resolução do sensor seja utilizada ao máximo, pois dessa maneira os sensores que possuem uma resolução de três pulsos por revolução (em cada canal, ver Figura \ref{fig:ilustracao_uma_revolucao}) consigam acionar doze (12) vezes a interrupção que irá computar o $\omega_{motor}$, passando assim a ser ter uma resolução equivalente a doze pulsos por revolução.\\
 
 Para o cálculo do módulo da velocidade de rotação do eixo do motor faz-se uso da medição pelo período do sinal (conforme a Equação \ref{eq:omega_periodimetro}) com os seguintes parâmetros:
 
@@ -12,7 +12,7 @@ Para o cálculo do módulo da velocidade de rotação do eixo do motor faz-se us
     \item $T_{hf} = 1\mu{}s$. O contador de alta precisão do $ESP32$ possui, idealmente, uma resolução de $1\mu{}s$ \cite{esp}.
 \end{itemize}
 
-A escolha do método de leitura por periodímetro ao em vez do frequencímetro se deu devido assim ser possível a leitura imediata da velocidade, pois basta apenas uma interrupção para se ter uma medição e também devido a boa precisão da leitura para baixas velocidades, mesmo que isso piore para altas velocidades (como mostrado na Equação \ref{eq:erro_quantizacao_periodimetro}).
+A escolha do método de leitura por periodímetro em vez do frequencímetro se deu devido assim ser possível a leitura imediata da velocidade, pois basta apenas uma interrupção para se ter uma medição e também devido à boa precisão da leitura para baixas velocidades, mesmo que isso piore para altas velocidades (como mostrado na Equação \ref{eq:erro_quantizacao_periodimetro}).
 
 \begin{figure}[H]
     \centering
@@ -22,9 +22,9 @@ A escolha do método de leitura por periodímetro ao em vez do frequencímetro s
     \fonte{Própria.}
 \end{figure}
 
-Já para se obter o sentido de rotação do motor, fez-se uso do padrão \emph{Gray Code} gerado pela diferença de fase entre os diferentes canais de um mesmo sensor. Uma maneira de fazer isso é ler os \emph{GPIO}'s associados aos canais do \emph{Encoder} e verificar o padrão em binário e inferir o sentido de rotação (conforme apresentado na \autoref{sec:encoders}). Porém esse procedimento apresentou uma alta taxa de erro na inferência do sentido para medias e altas velocidades. \\
+Já para se obter o sentido de rotação do motor, fez-se uso do padrão \emph{Gray Code} gerado pela diferença de fase entre os diferentes canais de um mesmo sensor. Uma maneira de fazer isso é ler os \emph{GPIO}'s associados aos canais do \emph{Encoder} e verificar o padrão em binário e inferir o sentido de rotação (conforme apresentado na \autoref{sec:encoders}). Porém esse procedimento apresentou uma alta taxa de erro na inferência do sentido para médias e altas velocidades. \\
 
-A abordagem adotada aqui foi armazenar os dois \emph{bits}(sendo canal A bit mais significado) e concatenar/somar com os últimos dois \emph{bits} (da leitura anterior) deslocados em dois (equivalente à multiplicar por $2^2$ ou operar bit-a-bit: $bits_{anteriores} << 2$), criando assim um padrão com $4$ \emph{bits}, sendo os dois mais significados o padrão da leitura anterior e os dois menos significativos a leitura atual. Esse procedimento é ilustrado para uma rotação no sentido horário e no sentido anti-horário respectivamente nas Tabelas \ref{tab:tabela_gray_code_cw} e \ref{tab:tabela_gray_code_ccw}, dessa forma gera-se quatro($4$) padrões/códigos que caracterizam um tipo de rotação. Esse padrão de $4$\emph{bits} é armazenado de forma estática em um vetor(uma tabela de cola/ \emph{lookup table}) nas rotinas de ambos os motores, esse vetor mapeia o código binário em $1$, $-1$ ou zero para as combinações que não caracterizam um sentido de giro, o sinal do valor corresponde ao sentido horário ou anti-horário e depende do motor. Os vetores \emph{lookup table} para ambos os motores são apresentados  nas Tabela \ref{tab:lookup_table_motor_esquerdo} e \ref{tab:lookup_table_motor_direito}.
+A abordagem adotada aqui foi armazenar os dois \emph{bits}(sendo canal A bit mais significado) e concatenar/somar com os últimos dois \emph{bits} (da leitura anterior) deslocados em dois (equivalente à multiplicar por $2^2$ ou operar bit-a-bit: $bits_{anteriores} << 2$), criando assim um padrão com $4$ \emph{bits}, sendo os dois mais significativos o padrão da leitura anterior e os dois menos significativos a leitura atual. Esse procedimento é ilustrado para uma rotação no sentido horário e no sentido anti-horário respectivamente nas Tabelas \ref{tab:tabela_gray_code_cw} e \ref{tab:tabela_gray_code_ccw}, dessa forma geram-se quatro($4$) padrões/códigos que caracterizam um tipo de rotação. Esse padrão de $4$\emph{bits} é armazenado de forma estática em um vetor(uma tabela de cola/ \emph{Lookup Table}) nas rotinas de ambos os motores. Esse vetor mapeia o código binário em $1$, $-1$ ou zero para as combinações que não caracterizam um sentido de giro. O sinal do valor corresponde ao sentido horário ou anti-horário e depende do motor. Os vetores \emph{lookup table} para ambos os motores são apresentados  nas Tabela \ref{tab:lookup_table_motor_esquerdo} e \ref{tab:lookup_table_motor_direito}.
 
 \input{tabelas/tabela_cw_gray_code}
 \input{tabelas/tabela_ccw_gray_code}
@@ -34,7 +34,7 @@ A abordagem adotada aqui foi armazenar os dois \emph{bits}(sendo canal A bit mai
 Com a \emph{lookup table} e o módulo da velocidade é possível calcular a velocidade de rotação da seguinte forma:
 
 \begin{equation}
-    \omega_{medido} = \frac{2\pi}{N_{PR}\Delta{t}}table[code]
+    \omega_{\text{medido}} = \frac{2\pi}{N_{PR}\Delta{t}}\text{table}[\text{code}]
 \end{equation}
 
 Sendo,
@@ -52,7 +52,7 @@ Para isso é considerado que o sistema $\omega(t)$ possui um comportamento de pr
 \begin{equation*}
 \begin{cases}
     \textbf{x}_k = \left[ \omega_k \right]\\
-    \textbf{z}_k = x_k = [\omega_k]\\
+    \textbf{z}_k = [\omega_k]\\
     \textbf{F}_k = [1]\\
     \textbf{H}_k = [1]
 \end{cases}
@@ -90,7 +90,7 @@ Os parâmetros do filtro foram sintonizados experimentalmente, sendo eles:
     \item $P_0 = 60$, valor inicial da incerteza da melhor estimativa.
 \end{itemize}
 
-Foram utilizados estruturas do tipo fila (\emph{Queue} de tamanho 1, para não causar atrasos extras) para enviar e receber estruturas de dados entre as interrupções dos sensores e as demais rotinas em execução no ESP32. Dessa maneira foi possível evitar o uso de variáveis globais e permitiu a troca de informação com a rotina de controle que fica em execução em um núcleo diferente do microcontrolador. O fila de saída contém a estimativa da velocidade e a fila de entrada contém os parâmetros do filtro, bem como o último sinal de controle. Um pseudo código ilustrando a rotina de leitura dos sensores é apresentado a seguir:
+Foram utilizados estruturas do tipo fila (\emph{Queue} de tamanho 1, para não causar atrasos extras) para enviar e receber estruturas de dados entre as interrupções dos sensores e as demais rotinas em execução no ESP32. Dessa maneira foi possível evitar o uso de variáveis globais e permitiu a troca de informação com a rotina de controle que fica em execução em um núcleo diferente do microcontrolador. A fila de saída contém a estimativa da velocidade e a fila de entrada contém os parâmetros do filtro, bem como o último sinal de controle. Um pseudo código ilustrando a rotina de leitura dos sensores é apresentado a seguir:
 
 \begin{algorithm}
 \caption{Rotina de Leitura dos Sensores}
@@ -99,18 +99,23 @@ Foram utilizados estruturas do tipo fila (\emph{Queue} de tamanho 1, para não c
   \State $lookup\_table \gets $ \{0, 1, -1, 0, 0, 0, 0, 1, 0, 0, 0, -1, 0, 1, -1, 0\}
 
   % atualiza o codigo
-  \State $code \gets \left(code \ll 2\right) + \left(\left(READ\_GPIO(CANAL\_A)\ll1\right)+READ\_GPIO(CANAL\_B)\right)$
-
-  \State $t_1 \gets get\_time()$ \Comment{Obtém o tempo atual em segundos.}
+  \State $code \gets \left(code \ll 2\right)$ 
+  \State $code \gets code + \left(\left(READ\_GPIO(CANAL\_A)\ll1\right)+READ\_GPIO(CANAL\_B)\right)$
+    
+  \Comment{Obtém o tempo atual em segundos.}
+  \State $t_1 \gets get\_time()$
   
   \State $\Delta{t} \gets  t_1 - t_0$
   
-  \State $t_0 \gets t_1$ \Comment{Atualiza a referência de tempo anterior $t_0$}
+  \Comment{Atualiza a referência de tempo anterior $t_0$}
+  \State $t_0 \gets t_1$
   
   \State $\omega_{medido} \gets \frac{2\pi}{N_{PR}*\Delta{t}}$ * $lookup\_table[code]$
   
-  \If{ $queue\_input.empty()$ \textbf{E} nunca recebeu} \Comment{Verifica se tem os dados para usar o filtro.}
-    \State $queue\_output \gets \omega_{medido}$  \Comment{Coloca o $\omega_{medido}$ na fila de saída e encerra a rotina.}
+  \Comment{Verifica se tem os dados para usar o filtro.}
+  \If{ $queue\_input.empty()$ \textbf{E} nunca recebeu}\\
+    \Comment{Coloca o $\omega_{medido}$ na fila de saída e encerra a rotina.}
+    \State $queue\_output \gets \omega_{medido}$
     \State return;
   \EndIf
   

@@ -3,12 +3,12 @@
 % Falar sobre como foi feito a divisão das atividades no microcontrolador
 % Mostrar ilustração dessa divisão, para ter-se uma visão global das rotinas e suas relações de dependência
 
-A implementação em software embarcado do sistema proposto é dividido em quatro rotinas principais, sendo elas: rotina comunicação, rotina de calibração, rotina de leitura dos sensores  e a rotina de controle. 
+A implementação em software embarcado do sistema proposto é dividida em quatro rotinas principais, sendo elas: rotina comunicação, rotina de calibração, rotina de leitura dos sensores  e a rotina de controle. 
 Este trabalho fez uso dos múltiplos cores presentes no ESP32. 
 O núcleo 1 (também denominado por \emph{APP CPU}) é responsável única e
 exclusivamente  pela execução do ciclo de controle que atua em ambos os motores (direito e esquerdo). 
-As demais rotinas são executadas de forma concorrente no núcleo 0 (\emph{PRO CPU}), sendo que as rotinas de leitura dos sensores possuem máxima prioridade e a de comunicação possui uma prioridade inferior. Foram realizados testes de tal forma a comprovar que o microcontrolador consegue lidar essa 
-divisão de tarefas sem que ocorre monopolização de recursos por parte de alguma das rotinas, ou seja, o ESP32 (mesmo configurado para a menor frequência de operação, 80MHz, consegue lidar com as altas taxas de acionamento das rotinas/interrupções). A seguir é apresentado com mais detalhes cada uma das rotinas presentes no 
+As demais rotinas são executadas de forma concorrente no núcleo 0 (\emph{PRO CPU}), sendo que as rotinas de leitura dos sensores possuem máxima prioridade e a de comunicação possui uma prioridade inferior. Foram realizados testes de tal forma a comprovar que o microcontrolador consegue lidar com essa 
+divisão de tarefas sem que ocorra monopolização de recursos por parte de alguma das rotinas, ou seja, o ESP32 (mesmo configurado para a menor frequência de operação, 80MHz consegue lidar com as altas taxas de acionamento das rotinas/interrupções). A seguir são apresentados com mais detalhes cada uma das rotinas presentes no 
 sistema embarcado.
 
 \input{textuais/firmware/rotina_comunicacao}
