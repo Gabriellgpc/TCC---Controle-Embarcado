@@ -2,7 +2,7 @@
 \label{subsec:rotina_comunicacao}
 % TODO:
 % IDEIA: ILUSTRAR A INTERAÇÃO ENTRE A ROTINA PRINCIPAL E A INTERRUPÇÃO
-A rotina de comunicação opera em um \emph{loop} infinito no núcleo principal do microcontrolador e é responsável por tratar os telecomandos recebidos pelo \textit{Bluetooth}. Ao ser identificado um recebimento de mensagem pelo sinal de interrupção da comunicação \textit{Bluetooth} é acionada a função de tratamento de interrupção correspondente que possui como única função encaminhar as mensagens válidas (verificar cabeçalho) para a rotina principal de comunicação. Isso é feito para evitar sobrecarregar a interrupção (podendo atrapalhar as interrupções dos \emph{Encoders} devido à alta prioridade da interrupção). A Figura \ref{fig:ilustracao_rotina_comunicacao} ilustra as etapas da rotina de comunicação.\\
+A rotina de comunicação opera em um \emph{loop} infinito no núcleo principal do microcontrolador e é responsável por tratar os telecomandos recebidos pelo \textit{Bluetooth}. Ao ser identificado um recebimento de mensagem pelo sinal de interrupção da comunicação \textit{Bluetooth} é acionada a função de tratamento de interrupção correspondente que possui como única função encaminhar as mensagens válidas (verificar cabeçalho) para a rotina principal de comunicação. Isso é feito para evitar sobrecarregar a interrupção (podendo atrapalhar as interrupções dos \emph{encoders} devido à alta prioridade da interrupção). A Figura \ref{fig:ilustracao_rotina_comunicacao} ilustra as etapas da rotina de comunicação.\\
 
 \begin{figure}[H]
     \centering

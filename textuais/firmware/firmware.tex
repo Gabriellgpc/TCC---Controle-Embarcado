@@ -3,10 +3,9 @@
 % Falar sobre como foi feito a divisão das atividades no microcontrolador
 % Mostrar ilustração dessa divisão, para ter-se uma visão global das rotinas e suas relações de dependência
 
-A implementação em software embarcado do sistema proposto é dividida em quatro rotinas principais, sendo elas: rotina de comunicação, rotina de calibração, rotina de leitura dos sensores  e a rotina de controle. 
-Este trabalho fez uso dos múltiplos \emph{cores} presentes no ESP32. 
-O núcleo 1 (também denominado por \emph{APP CPU}) é responsável única e
-exclusivamente  pela execução do ciclo de controle que atua em ambos os motores (direito e esquerdo). 
+A implementação em software embarcado do sistema proposto é dividida em quatro rotinas principais, sendo elas: rotina de comunicação, rotina de calibração, rotina de leitura dos sensores  e a rotina de controle. É importante notar que nesse trabalho a rotina denominada de rotina de calibração possui mais de uma função e apesar da nomenclatura coincidir com um conceito muito popular que é o de calibração de sensores, essa rotina não possui essa função, as funções da rotina de calibração foram: identificação de parâmetros (ganho em malha aberta, ganho do controlador \emph{Feedforward} e estimativa da zona morta) e sintonia do controlador proporcional. Essa rotina será explicada em detalhes mais adiante.
+
+Este trabalho fez uso dos múltiplos \emph{cores} presentes no ESP32. O núcleo 1 (também denominado por \emph{APP CPU}) é responsável apenas pela execução do ciclo de controle que atua em ambos os motores (direito e esquerdo). 
 As demais rotinas são executadas de forma concorrente no núcleo 0 (\emph{PRO CPU}), sendo que as rotinas de leitura dos sensores possuem máxima prioridade e a de comunicação possui uma prioridade inferior. Foram realizados testes de tal forma a comprovar que o microcontrolador consegue lidar com essa 
 divisão de tarefas sem que ocorra monopolização de recursos por parte de alguma das rotinas, ou seja, o ESP32 (mesmo configurado para a menor frequência de operação, 80 MHz) consegue lidar com as altas taxas de acionamento das rotinas/interrupções. 
 

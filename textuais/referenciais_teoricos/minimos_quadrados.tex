@@ -1,6 +1,96 @@
 \section{Mínimos Quadrados}
 \label{sec:MMQ}
-De maneira geral, a ideia por trás do método dos mínimos quadrados (MMQ) é de encontrar os coeficientes da(s) funções de base que minimizem o erro, ou seja, com o menor erro possível associado à representação \cite{MMQ}. Assim, dado que queremos obter a equação e possuímos vetores de dados $x$ e $y$, e queremos relacioná-los. Por exemplo, caso queira-se aproximar o conjunto de dados para a reta:
+
+O Método dos Mínimos Quadrados (MMQ) é uma técnica de otimização matemática que procura encontrar o melhor ajuste para um conjunto de dados por meio da minimização da soma dos quadrados das diferenças entre os valores estimados e os observados (tais diferenças são chamadas resíduos).
+
+Um requisito para o método dos mínimos quadrados é que o erro possua uma distribuição normal. Outro requisito é que as variáveis devem apresentar uma relação linear entre si \cite{MMQ}.
+
+Ao usar uma base de dados com $k$ variáveis explicativas ($x$) e $n$ observações ($y$), o modelo pode ser escrito na forma matricial:
+
+% A regressão múltipla leva em consideração diversas variáveis explicativas $x$ influenciando $y$ ao mesmo tempo \cite{wiki:MMQ} e o formato do 
+
+\begin{equation}
+    \bm{Y} = \bm{X\alpha{} + e}
+\end{equation}
+onde as matrizes possuem a seguinte forma:
+
+\begin{align*}
+    \bm{Y} =
+    \begin{bmatrix}
+        y_1\\
+        y_2\\
+        \vdots\\
+        y_n
+    \end{bmatrix},
+    \bm{X} = 
+    \begin{bmatrix}
+        1 & x_{11} & x_{21} & \hdots & x_{k1} \\
+        1 & x_{12} & x_{22} & \hdots & x_{k1} \\
+        \vdots & \vdots & \vdots & \vdots & \vdots \\
+        1 & x_{1n} & x_{2n} & \hdots & x_{kn}
+    \end{bmatrix} \times 
+    \begin{bmatrix}
+        b_0\\
+        b_1\\
+        \vdots\\
+        b_k
+    \end{bmatrix},
+    \bm{e} = 
+    \begin{bmatrix}
+        e_1\\
+        e_2\\
+        e_3\\
+        \vdots\\
+        e_n
+    \end{bmatrix}
+\end{align*}
+, onde $x_{ji}$ representa o valor da $j$-ésima variável da $i$-ésima observação.
+
+A solução de mínimos quadrados se dá através da minimização da soma do quadrado dos resíduos conforme apresentado em \cite{wiki:MMQ} e o resultado é apresentado na Equação \ref{eq:MMQ_solucao}.
+
+\begin{equation}
+    \bm{\hat{\alpha}} = \bm{\left( X^{T}X \right)^{-1}X^{T}Y}
+    \label{eq:MMQ_solucao}
+\end{equation}
+sendo $\bm{\hat{\alpha}}$ a melhor estimativa para os parâmetros que relacionam $\bm{X}$ com $\bm{Y}$.
+
+Por exemplo, para se realizar uma regressão de um conjunto de observações com o seguinte comportamento linear:
+
+\begin{equation}
+    y = b + ax
+\end{equation}
+podemos arranjar os dados na forma matricial:
+
+\begin{equation*}
+    \bm{Y} = \bm{X\alpha}
+\end{equation*}
+sendo,
+
+\begin{align*}
+    \bm{Y} =
+    \begin{bmatrix}
+        y_1\\
+        y_2\\
+        \vdots\\
+        y_n
+    \end{bmatrix},
+    \bm{X} = 
+    \begin{bmatrix}
+        1 & x_1\\
+        1 & x_2\\
+        \vdots & \vdots\\
+        1 & x_n
+    \end{bmatrix}, 
+    \bm{\alpha} = 
+    \begin{bmatrix}
+        b\\
+        a
+    \end{bmatrix}
+\end{align*}
+com isso podemos calcular a melhor estimativa $\bm{\hat{\alpha}} = \begin{bmatrix}\hat{b} & \hat{a}\end{bmatrix}^T$ como em \ref{eq:MMQ_solucao}.
+
+\begin{comment}
+De maneira geral, a ideia por trás do método dos mínimos quadrados (MMQ) é de encontrar os coeficientes da(s) função(ões) de base que minimizem o erro, ou seja, com o menor erro possível associado à representação \cite{MMQ}. Assim, dado que queremos obter a equação e possuímos vetores de dados $x$ e $y$, e queremos relacioná-los. Por exemplo, caso queira-se aproximar o conjunto de dados para a reta:
 
 \begin{equation}
     y = ax + b.
@@ -63,3 +153,4 @@ Sendo,
 \]
 
 Os elementos do vetor $\bm{\hat{{\alpha}}}$ serão os coeficientes da equação \ref{eq:pol1} que minimizarão o erro, ou seja, são os coeficientes da reta que melhor representam o conjunto de dados.
+\end{comment}

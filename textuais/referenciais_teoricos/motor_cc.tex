@@ -4,12 +4,12 @@
 % deixar claro qual o tipo será apresentado/utilizado no trabalho (motor CC de campo magnético fixo e com "escova")
 Como o próprio nome indica, os motores CC são acionados por uma fonte de corrente contínua. Esse tipo de motor é amplamente utilizado em diversas aplicações.
 
-Ele é constituído basicamente pelo enrolamento de armadura, enrolamento de campo, comutador e as escovas, onde:
+Ele é constituído basicamente pelo enrolamento de armadura, enrolamento de campo ou ímãs permanentes, comutador e as escovas, onde:
 
 \begin{itemize}
     \item Enrolamento de armadura: é localizado na parte giratória do motor de CC (rotor) que é responsável por produzir o torque que o movimenta, bem como a tensão de saída quando em modo de gerador.
     
-    \item Enrolamento de campo: parte fixa responsável pelo fluxo magnético constante que irá atravessar a armadura. 
+    \item Enrolamento de campo: parte fixa responsável pelo fluxo magnético constante que irá atravessar a armadura. Em motores CC de pequenas dimensões, como os utilizados neste trabalho, o enrolamento de campo muitas vezes é substituído pela colocação de ímãs permanentes ao redor da armadura, responsáveis por gerar um campo magnético constante.
     
     \item Comutador: Possui a função de manter a corrente da armadura circulando no mesmo sentido, fazendo com que o torque mantenha seu sentido para uma tensão de entrada constante.
     
@@ -32,7 +32,7 @@ E o torque é dado por:
 \end{equation}onde $K_1$ é um parâmetro determinado pela estrutura física da máquina e $\phi$ é o fluxo magnético. Supondo que a máquina esteja operando na zona linear (ou seja, que o núcleo não esteja saturado), o fluxo é dado pela equação:
 \begin{equation}
     \phi = K_{2}i_f
-\end{equation}onde $K_2$ é uma constante e depende das características magnéticas do núcleo e do enrolamento de campo.
+\end{equation}onde $K_2$ é uma constante e depende das características magnéticas do núcleo e do enrolamento de campo. No caso de motores com ímãs permanentes, o fluxo $\phi = \phi_\text{const}$ é constante, determinado pelos materiais e características de construção dos ímãs.
 
 Motores geram potência mecânica, de forma que a velocidade de rotação $\omega$ é o sinal de saída e a tensão $v_a$ aplicada é o sinal de entrada. 
 
@@ -68,11 +68,11 @@ Do circuito da figura \ref{fig:eq_eletrico_motorcc} extrai-se a seguinte funçã
     \frac{\Omega(s)}{V_a(s)} = \frac{K_m}{JL_{a}s^2 + \left(JR_a + BL_a \right)s + BR_a + K_{m}^2} \left[\frac{ rad.s^{-1}}{V}  \right]
 \end{equation*}
 
-Caso a impedância da armadura seja desprezada $(L_a \xrightarrow{} 0)$:
+Caso a impedância da armadura seja desprezada $(L_a \xrightarrow{} 0)$, o que quase sempre é possível pois a constante de tempo relacionada ao comportamento mecânico do motor é muito maior do que a relacionada ao funcionamento elétrico:
 
 \begin{equation}
     \frac{\Omega(s)}{V_{a}(s)} = \frac{K_m}{JR_{a}s + BR_{a} + K_{m}^2} = \frac{K}{T_{m}s + 1} \left[\frac{ rad.s^{-1}}{V}  \right]
     \label{eq:motor_transf_func}
 \end{equation}
 
-Portando, caso a impedância da armadura seja desprezada, a função de transferência do motor que relacionada a velocidade angular com a tensão de entrada se comporta como a de sistema de primeira ordem. A maior dificuldade encontrada ao se controlar motores CC é a amplitude elevada da corrente de armadura, o que requer a utilização de sinal $v_a$ de entrada fornecido por uma fonte de alta potência.
+Portando, caso a impedância da armadura seja desprezada, a função de transferência do motor que relaciona a velocidade angular com a tensão de entrada se comporta como a de um sistema de primeira ordem. A maior dificuldade encontrada ao se controlar motores CC é a amplitude elevada da corrente de armadura, o que requer a utilização de sinal $v_a$ de entrada fornecido por uma fonte de alta potência.

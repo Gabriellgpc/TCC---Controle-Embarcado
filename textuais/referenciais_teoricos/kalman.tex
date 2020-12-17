@@ -1,13 +1,13 @@
 \section{Filtro de Kalman}
 % Introdução ao filtro de Kalman
 \label{sec:kalman}
-"A filtragem de \emph{Kalman} é um processo de estimativa de estado ótimo aplicado a um sistema dinâmico que envolve perturbações aleatórias. Mais precisamente, o filtro de \emph{Kalman} fornece um  procedimento recursivo linear que visa minimizar a variância do erro para estimar de forma otimizada o estado desconhecido de um sistema dinâmico de dados ruidosos obtidos em tempo real discreto. Tem sido amplamente utilizado em muitas aplicações, como por exemplo, sistemas de rastreamento, navegação por satélite, estimar trajetória de mísseis balísticos e radar." \cite{kalman:book}.\\
+"A filtragem de Kalman é um processo de estimativa de estado ótimo aplicado a um sistema dinâmico que envolve perturbações aleatórias. Mais precisamente, o filtro de Kalman fornece um  procedimento recursivo linear que visa minimizar a variância do erro para estimar de forma otimizada o estado desconhecido de um sistema dinâmico de dados ruidosos obtidos em tempo real discreto. Tem sido amplamente utilizado em muitas aplicações, como por exemplo, sistemas de rastreamento, navegação por satélite, estimar trajetória de mísseis balísticos e radar." \cite{kalman:book}.\\
 
-O filtro de \emph{Kalman} usa um modelo dinâmico do sistema (por exemplo, leis físicas do movimento), entradas de controle conhecidas para esse sistema e várias medições sequenciais para formar uma estimativa das quantidades variáveis do sistema (seu estado $\textbf{x}_k$) que é melhor do que a estimativa obtida usando apenas as medições. Como tal, é um algoritmo comum de fusão de sensores e fusão de dados \cite{kalman:wiki}, \cite{Kalman:ofid}.\\
+O filtro de Kalman usa um modelo dinâmico do sistema (por exemplo, leis físicas do movimento), entradas de controle conhecidas para esse sistema e várias medições sequenciais para formar uma estimativa das quantidades variáveis do sistema (seu estado $\textbf{x}_k$) que é melhor do que a estimativa obtida usando apenas as medições. Como tal, é um algoritmo comum de fusão de sensores e fusão de dados \cite{kalman:wiki}, \cite{Kalman:ofid}.\\
 
-O filtro produz uma estimativa do estado do sistema como uma média do estado previsto do sistema e da nova medição usando uma média ponderada. O objetivo dos pesos é que os valores com menor incerteza sejam mais "confiáveis". O ganho de \emph{Kalman} é o peso relativo dado às medições e estimativa do estado atual.\\
+O filtro produz uma estimativa do estado do sistema como uma média do estado previsto do sistema e da nova medição usando uma média ponderada. O objetivo dos pesos é que os valores com menor incerteza sejam mais "confiáveis". O ganho de Kalman é o peso relativo dado às medições e estimativa do estado atual.\\
 
-Para o uso do filtro de \emph{Kalman} deve-se modelar o processo de acordo com a seguinte estrutura. Isso significa especificar as seguintes matrizes \cite{kalman:book}:
+Para o uso do filtro de Kalman deve-se modelar o processo de acordo com a seguinte estrutura. Isso significa especificar as seguintes matrizes \cite{kalman:book}:
 
 \begin{itemize}
     \item $\textbf{F}_k$: Modelo de transição de estado.
@@ -18,7 +18,7 @@ Para o uso do filtro de \emph{Kalman} deve-se modelar o processo de acordo com a
 \end{itemize}
 
 
-Modelo do sistema para o filtro de \emph{Kalman}:
+Modelo do sistema para o filtro de Kalman:
 \begin{equation}
 \textbf{x}_k = \textbf{F}_x \textbf{x}_{k-1} + \textbf{B}_k \textbf{u}_k + \textbf{w}_k; \textbf{w}_k \sim N(0, \textbf{Q}_k)
 \end{equation}

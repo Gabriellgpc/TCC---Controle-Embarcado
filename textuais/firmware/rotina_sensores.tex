@@ -3,7 +3,7 @@
 % TODO:
 % REALIZAR ANÁLISE DE FREQ. MÁXIMA DE OPERAÇÃO DOS ENCODERS VS BANDA DISPONIVEL NAS INTERRUPÇÕES RESPONSAVEIS PELA LEITURA DOS ENCODERS
 
-Há duas interrupções associadas aos sinais provenientes dos \emph{Encoders} rotativos, uma para cada motor, cujo objetivo é medir a velocidade de rotação do eixo do motor ($\omega_{medido}$) bem como aplicar o filtro de \emph{Kalman} para uma melhor estimativa da mesma ($\hat{\omega}$). As interrupções são provocadas pelas bordas dos pulsos de ambos os canais, fazendo com que a resolução do sensor seja utilizada ao máximo, pois dessa maneira os sensores que possuem uma resolução de três pulsos por revolução (em cada canal, ver Figura \ref{fig:ilustracao_uma_revolucao}) consigam acionar doze (12) vezes a interrupção que irá computar o $\omega_{motor}$, passando assim a ser ter uma resolução equivalente a doze pulsos por revolução.\\
+Há duas interrupções associadas aos sinais provenientes dos \emph{encoders} rotativos, uma para cada motor, cujo objetivo é medir a velocidade de rotação do eixo do motor ($\omega_{medido}$) bem como aplicar o filtro de Kalman para uma melhor estimativa da mesma ($\hat{\omega}$). As interrupções são provocadas pelas bordas dos pulsos de ambos os canais, fazendo com que a resolução do sensor seja utilizada ao máximo, pois dessa maneira os sensores que possuem uma resolução de três pulsos por revolução (em cada canal, ver Figura \ref{fig:ilustracao_uma_revolucao}) consigam acionar doze (12) vezes a interrupção que irá computar o $\omega_{motor}$, passando assim a ser ter uma resolução equivalente a doze pulsos por revolução.\\
 
 Para o cálculo do módulo da velocidade de rotação do eixo do motor faz-se uso da medição pelo período do sinal (conforme a Equação \ref{eq:omega_periodimetro}) com os seguintes parâmetros:
 
@@ -24,12 +24,14 @@ A escolha do método de leitura por periodímetro em vez do frequencímetro se d
 
 Já para se obter o sentido de rotação do motor, fez-se uso do padrão \emph{Gray Code} gerado pela diferença de fase entre os diferentes canais de um mesmo sensor. Uma maneira de fazer isso é ler os \emph{GPIO}'s associados aos canais do \emph{Encoder} e verificar o padrão em binário e inferir o sentido de rotação (conforme apresentado na \autoref{sec:encoders}). Porém esse procedimento apresentou uma alta taxa de erro na inferência do sentido para médias e altas velocidades. \\
 
-A abordagem adotada aqui foi armazenar os dois \emph{bits} e concatenar/somar com os últimos dois \emph{bits} (da leitura anterior) deslocados em dois (equivalente à multiplicar por $2^2$ ou operar bit-a-bit: $bits_{anteriores} << 2$), criando assim um padrão com $4$ \emph{bits}, sendo os dois mais significativos o padrão da leitura anterior e os dois menos significativos a leitura atual. Esse procedimento é ilustrado para uma rotação no sentido horário e no sentido anti-horário respectivamente nas Tabelas \ref{tab:tabela_gray_code_cw} e \ref{tab:tabela_gray_code_ccw}, dessa forma geram-se quatro($4$) padrões/códigos que caracterizam um tipo de rotação. Esse padrão de $4$\emph{bits} é armazenado de forma estática em um vetor(uma tabela de cola/ \emph{Lookup Table}) nas rotinas de ambos os motores. Esse vetor mapeia o código binário em $1$, $-1$ ou zero para as combinações que não caracterizam um sentido de giro. O sinal do valor corresponde ao sentido horário ou anti-horário e depende do motor. Os vetores \emph{lookup table} para ambos os motores são apresentados  nas Tabela \ref{tab:lookup_table_motor_esquerdo} e \ref{tab:lookup_table_motor_direito}.
+A abordagem adotada aqui foi armazenar os dois \emph{bits} e concatenar/somar com os últimos dois \emph{bits} (da leitura anterior) deslocados em dois (equivalente à multiplicar por $2^2$ ou operar bit-a-bit: $bits_{anteriores} << 2$), criando assim um padrão com $4$ \emph{bits}, sendo os dois mais significativos o padrão da leitura anterior e os dois menos significativos a leitura atual. Esse procedimento é ilustrado para uma rotação no sentido horário e no sentido anti-horário respectivamente nas Tabelas \ref{tab:tabela_gray_code_cw} e \ref{tab:tabela_gray_code_ccw}, dessa forma geram-se quatro($4$) padrões/códigos que caracterizam um tipo de rotação. Esse padrão de $4$\emph{bits} é armazenado de forma estática em um vetor(uma tabela de cola/ \emph{Lookup Table}) nas rotinas de ambos os motores. Esse vetor mapeia o código binário em $1$, $-1$ ou zero para as combinações que não caracterizam um sentido de giro. O sinal do valor corresponde ao sentido horário ou anti-horário e depende do motor. Os vetores \emph{lookup table} para ambos os motores são apresentados  nas Tabela \ref{tab:lookup_table_motor_esquerdo} e \ref{tab:lookup_table_motor_direito}. 
 
 \input{tabelas/tabela_cw_gray_code}
 \input{tabelas/tabela_ccw_gray_code}
 \input{tabelas/tabela_lookup_table_motor_esquerdo}
 \input{tabelas/tabela_lookup_table_motor_direito}
+
+É importante notar que é possível usar apenas uma \emph{lookup table}, porém no trabalho foi feito o uso de duas diferentes, pois cada uma delas é alocada estaticamente em suas respectivas interrupções (uma na interrupção do \emph{encoder} do motor direito e outra na do motor esquerdo) e já apresentam os sinais correspondentes ao sentido, sendo $+1$, indicando um sentido de giro que favorece o movimento para frente do robô e $-1$ o movimento para trás, de acordo com o motor.
 
 Com a \emph{lookup table} e o módulo da velocidade é possível calcular a velocidade de rotação da seguinte forma:
 
@@ -45,7 +47,7 @@ Sendo,
 
 Uma vez calculado o $\omega_{medido}$, calcula-se em 
 seguida a melhor estimativa para $\omega$ ($\hat{\omega}$) 
-utilizando-se o filtro de \emph{Kalman} (conforme apresentado na \autoref{sec:kalman}). 
+utilizando-se o filtro de Kalman (conforme apresentado na \autoref{sec:kalman}). 
 Para isso é considerado que o sistema $\omega(t)$ possui um comportamento de primeira ordem 
 (conforme Equação \ref{eq:motor_transf_func}), fazendo com que as variáveis do filtro sejam:
 
@@ -77,7 +79,7 @@ Com isso a etapa de \textbf{predição} do filtro torna-se:
 \begin{align*}
     \check{\omega}_{k|k-1} &= F_k \hat{\omega}_{k-1} + B_{k} u_{k}\\
     % \check{\omega}_{k|k-1} &= \hat{\omega}_{k-1} + (u_k.K_m - \hat{\omega}_{k-1})\left( 1 - e^{-\Delta{t}/T_m} \right)\\
-    \check{P}_{k|k-1} &= F_{k}\hat{P}_{k-1}F^T_k + Q_k
+    \check{P}_{k|k-1} &= F_{k}\hat{P}_{k-1}F_k + Q_k
 \end{align*}
 
 Sendo $u_k$ o sinal de controle no instante $k$.\\
@@ -97,6 +99,10 @@ Os parâmetros do filtro foram sintonizados experimentalmente, sendo eles:
     \item $R = 1200$, notou-se pouca variação nesse valor da variância da medição (o valor foi obtido calculando-se a variância da resposta da planta/motor em regime permanente).
     \item $P_0 = 60$, valor inicial da incerteza da melhor estimativa.
 \end{itemize}
+
+O algoritmo do filtro de Kalman é executado cada vez que chega uma medida (pulso) de \emph{encoder}, gerando uma medida da melhor estimativa disponível no momento sobre a velocidade angular.
+
+Essa filtragem é assíncrona em relação ao algoritmo de controle: ao ser atingido o próximo instante de geração do sinal de controle, que obedece a uma temporização fixa e pré-definida (período de amostragem), o controlador utiliza o último valor disponível para a velocidade angular estimada.\\
 
 Foram utilizados estruturas do tipo fila (de tamanho 1, para não causar atrasos extras) para enviar e receber estruturas de dados entre as interrupções dos sensores e as demais rotinas em execução no ESP32. Dessa maneira foi possível evitar o uso de variáveis globais e permitiu-se a troca de informação com a rotina de controle que fica em execução em um núcleo diferente do microcontrolador. A fila de saída contém a estimativa da velocidade e a fila de entrada contém os parâmetros do filtro, bem como o último sinal de controle. Um pseudo código ilustrando a rotina de leitura dos sensores é apresentado a seguir:
 

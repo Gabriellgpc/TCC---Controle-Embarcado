@@ -1,4 +1,4 @@
-\section{\textit{encoders} Incrementais}
+\section{\textit{Encoders} Incrementais}
 \label{sec:encoders}
 % Referencias:
 % https://www.roboticsbusinessreview.com/news/differences-between-encoder-resolution-accuracy-and-precision/
@@ -47,12 +47,21 @@ Nota-se pela Equação \ref{eq:erro_de_quantizacao_frequencimetro} que o erro de
 
 Pela Equação \ref{eq:erro_relativo_quantizacao_frequencimetro} observa-se que o erro relativo decresce conforme a velocidade $\omega$ aumenta, ou seja, o erro de quantização será mais significante para baixas velocidades.\\
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figuras/ilustracoes/ilustracao_medicao_encoder_por_periodo.eps}
+    \caption{Ilustração de leitura de \emph{encoder} periódica.}
+    \label{fig:ilustracao_periodimetro}
+    \fonte{Própria.}
+\end{figure}
+
 O outro método de leitura dos \emph{encoders} incrementais é por medição de intervalos de tempo de um mesmo pulso (\textbf{periodímetro}) (ver Figura \ref{fig:ilustracao_periodimetro}). A seguinte formulação pode ser obtida considerando a velocidade do motor constante e sem levar em conta o sentido de giro:
 
 \begin{equation}
     \omega = \frac{d\theta}{dt} \cong \frac{\Delta{\theta}}{nT_{hf}} \cong \frac{2\pi}{N_{PR} n T_{hf}} [rad.s^{-1}] \xrightarrow{} \frac{60}{N_{PR} n T_{hf}} [RPM]
     \label{eq:omega_periodimetro}
 \end{equation}
+onde $T_{hf}$ é o período do sinal do contador de alta frequência do microcontrolador e $n$ é a quantidade de pulsos, desse contador, que ocorreram entre os pulsos dos \emph{encoder}.
 
 O período entre pulsos será:
 
@@ -67,16 +76,9 @@ Uma aproximação para o pior caso do erro de quantização relativo a velocidad
     \label{eq:erro_quantizacao_periodimetro}
 \end{equation}
 
-A Equação \ref{eq:erro_quantizacao_periodimetro} mostra que o erro é diretamente proporcional à velocidade e a quantidade de pulsos por revolução ($N_{PR}$) e decresce com o aumento da frequência do contador de alta frequência (diminuição de $T_{hf}$).
+A Equação \ref{eq:erro_quantizacao_periodimetro} mostra que o erro é diretamente proporcional à velocidade e a quantidade de pulsos por revolução ($N_{PR}$) e decresce com o aumento da frequência do contador de alta frequência (diminuição de $T_{hf}$).\\
 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{figuras/ilustracoes/ilustracao_medicao_encoder_por_periodo.eps}
-    \caption{Ilustração de leitura de \emph{encoder} periódica.}
-    \label{fig:ilustracao_periodimetro}
-    \fonte{Própria.}
-\end{figure}
+Nesta versão do trabalho, foi adotada a medição da velocidade pelo método do periodímetro, devido ao fato do método do frequencímetro apresentar erros maiores em baixas velocidades, que normalmente são as situações onde se precisa de um controle mais preciso, e consequentemente de uma medição mais confiável. O método do periodímetro pode apresentar erro maior em altas velocidades, mas em compensação disponibiliza muitas medidas dentro de um mesmo ciclo de controle, que podem ser fundidas pelo filtro de Kalman e gerar um resultado estimado com baixo erro.\\
 
 Já para se obter o \textbf{sentido da velocidade $\omega$} é necessário fazer uso do padrão binário gerado pelas bordas dos sinais em quadratura. A Figura \ref{fig:cw_signal} ilustrado os sinais em quadratura para uma rotação no sentido horário e destaca o padrão binário gerado nas bordas. A Figura \ref{fig:ccw_signal} ilustra os sinais no sentido anti-horário. O padrão de dois bits é apresentado na Tabela \ref{tab:tabela_simple_code}. \\
 

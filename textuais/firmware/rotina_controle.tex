@@ -1,16 +1,16 @@
 \subsection{Rotina de Controle}
 \label{subsec:rotina_controle}
-Para garantir que não ocorram interrupções, o controle é executado sozinho no núcleo secundário (APP CPU) do ESP32. A rotina opera em \emph{loop} infinito com uma taxa de atualização de $5$ ms.\\
+Para garantir que não ocorram interrupções, o controle é executado sozinho no núcleo secundário (APP CPU) do ESP32. A rotina opera em \emph{loop} infinito com uma taxa de atualização de $5$ ms e de forma independente das interrupções dos \emph{encoders} (a rotina de leitura dos sensores e a do controle são assíncronas).\\
 
-Primeiramente a rotina verifica (para cada motor) se existem novas leituras de velocidades, providas pelas interrupções dos sensores. Caso existam, esses valores são atualizados e é passado para a etapa seguinte. Caso contrário é verificado a quanto tempo esses valores não são atualizados. Caso esse tempo seja superior a um limiar pré-definido (no trabalho foi usado esse limiar igual a 500ms) será considerado que o motor-roda em questão está parado ($\hat{\omega} = 0$) e avança-se para a etapa seguinte.\\
+Primeiramente a rotina verifica (para cada motor) se existem novas leituras de velocidades, providas pelas interrupções dos sensores. Caso existam, esses valores são atualizados e é passado para a etapa seguinte. Caso contrário é verificado a quanto tempo esses valores não são atualizados. Caso esse tempo seja superior a um limiar pré-definido (no trabalho foi usado esse limiar igual a 500 ms) será considerado que o motor-roda em questão está parado ($\hat{\omega} = 0$) e avança-se para a etapa seguinte.\\
 
-Com a informação da velocidade atualizada (ou mantida, caso não tenha havido nova leitura), lê-se as referências para os motores direito e esquerdo. Essas referências inicialmente são valores no intervalo [$-1$, $1$], pois indicam a porcentagem da velocidade que deve ser o \emph{set point} do controlador. \\
+Com a informação da velocidade atualizada (ou mantida, caso não tenha havido nova leitura), lê-se as referências para os motores direito e esquerdo. Essas referências são valores no intervalo [$-1$, $1$], pois indicam a porcentagem da velocidade que deve ser o \emph{set point} do controlador. \\
 % Em seguida calcula-se as referências em rad/s multiplicando-as pela velocidade máxima ($\omega_{max}$) do robô (obtida na etapa de calibração).\\
 
-A etapa seguinte é realizar os cálculos de controle, porém antes disso é necessário converter a referência para $rad/s$, faz-se isso multiplicando as referências relativas (provenientes da comunicação) pela velocidade máxima do robô ($\omega_{max}$), obtida na etapa de calibração. A seguir, são computadas, separadamente, a contribuição do controlador \emph{Feedforward} (conforme \ref{eq:feedforward}) e o proporcional (conforme \ref{eq:proporcional}) para ao final somá-las e assim obter o sinal de controle (PWM/$u(t) \in [-1,1]$). Após o sinal de controle passar por um saturador (para garantir que esteja no intervalo admissível) o sinal PWM para ambos os motores é enviado para o \emph{Driver motor} que tratará de excitar as entradas dos motores com as correspondentes tensões. A Figura \ref{fig:diagrama_de_controle_simplificado} apresenta uma visão geral simplificada do sistema de controle . A Figura \ref{fig:diagrama_sistema_de_controle_feedforward_backward} ilustra o ciclo de controle \emph{Feedforward} + \emph{Backward}.
+A etapa seguinte é realizar os cálculos de controle, porém antes disso é necessário converter a referência para $rad/s$, faz-se isso multiplicando as referências relativas (provenientes da comunicação) pela velocidade máxima do robô ($\omega_{max}$), obtida na etapa de calibração. A seguir, são computadas, separadamente, a contribuição do controlador \emph{Feedforward} (conforme \ref{eq:feedforward}) e o proporcional (conforme \ref{eq:proporcional}) para ao final somá-las e assim obter o sinal de controle (PWM/$u(t) \in [-1,1]$). Após o sinal de controle passar por um saturador (para garantir que esteja no intervalo admissível) o sinal PWM para ambos os motores é enviado para o \emph{Driver motor} que tratará de excitar as entradas dos motores com as correspondentes tensões. A Figura \ref{fig:diagrama_de_controle_simplificado} apresenta uma visão geral simplificada do sistema de controle .
 
 \begin{equation}
-    u_{ff} = \omega_{ref}\alpha + D
+    u_{ff} = \frac{\omega_{ref}}{K} + D
     \label{eq:feedforward}
 \end{equation}
 
@@ -34,3 +34,5 @@ A etapa seguinte é realizar os cálculos de controle, porém antes disso é nec
     \label{fig:diagrama_sistema_de_controle_feedforward_backward}
     \fonte{Própria.}
 \end{figure}
+
+A Figura \ref{fig:diagrama_sistema_de_controle_feedforward_backward} ilustra o ciclo de controle \emph{Feedforward} + \emph{Backward}. Podemos ver nessa Figura que a função do \emph{Feedforward}, ou seja, a função que mapeia $\omega$ num sinal PWM, está sendo feita pela inversão da função ($\omega_{ss} \times u$) estimada na rotina de identificação e sintonia, como apresentado na \autoref{subsec:rotina_calibracao}. A ideia por trás de se somar a ação do \emph{feedforward} com o controlador P é de tentar anular/zerar a zona morta do motor, as assimetrias entre motores e o erro de regime, conforme \autoref{sec:sistema_de_primeira_ordem}.
