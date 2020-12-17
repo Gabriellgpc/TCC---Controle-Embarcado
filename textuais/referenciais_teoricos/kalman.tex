@@ -1,9 +1,9 @@
 \section{Filtro de Kalman}
 % Introdução ao filtro de Kalman
 \label{sec:kalman}
-"A filtragem de \emph{Kalman} é um processo de estimativa de estado ótimo aplicado a um sistema dinâmico que envolve perturbações aleatórias. Mais precisamente, o filtro de \emph{Kalman} fornece um  procedimento recursivo linear, imparcial e que visa minimizar a variância do erro para estimar de forma otimizada o estado desconhecido de um sistema dinâmico de dados ruidosos obtidos em tempo real discreto. Tem sido amplamente utilizado em muitas áreas de aplicações industriais e governamentais, como sistemas de rastreamento, navegação por satélite, estimar trajetória de mísseis balísticos e radar." \cite{kalman:book}.\\
+"A filtragem de \emph{Kalman} é um processo de estimativa de estado ótimo aplicado a um sistema dinâmico que envolve perturbações aleatórias. Mais precisamente, o filtro de \emph{Kalman} fornece um  procedimento recursivo linear que visa minimizar a variância do erro para estimar de forma otimizada o estado desconhecido de um sistema dinâmico de dados ruidosos obtidos em tempo real discreto. Tem sido amplamente utilizado em muitas aplicações, como por exemplo, sistemas de rastreamento, navegação por satélite, estimar trajetória de mísseis balísticos e radar." \cite{kalman:book}.\\
 
-O filtro de \emph{Kalman} usa um modelo dinâmico do sistema (por exemplo, leis físicas do movimento), entradas de controle conhecidas para esse sistema e várias medições sequenciais (como de sensores) para formar uma estimativa das quantidades variáveis do sistema (seu estado $\textbf{x}_k$) que é melhor do que a estimativa obtida usando apenas as medições. Como tal, é um algoritmo comum de fusão de sensores e fusão de dados \cite{kalman:wiki}, \cite{Kalman:ofid}.\\
+O filtro de \emph{Kalman} usa um modelo dinâmico do sistema (por exemplo, leis físicas do movimento), entradas de controle conhecidas para esse sistema e várias medições sequenciais para formar uma estimativa das quantidades variáveis do sistema (seu estado $\textbf{x}_k$) que é melhor do que a estimativa obtida usando apenas as medições. Como tal, é um algoritmo comum de fusão de sensores e fusão de dados \cite{kalman:wiki}, \cite{Kalman:ofid}.\\
 
 O filtro produz uma estimativa do estado do sistema como uma média do estado previsto do sistema e da nova medição usando uma média ponderada. O objetivo dos pesos é que os valores com menor incerteza sejam mais "confiáveis". O ganho de \emph{Kalman} é o peso relativo dado às medições e estimativa do estado atual.\\
 
@@ -32,7 +32,7 @@ Modelo da observação/medição será:
 
 Sendo $\textbf{v}_k$ o ruído de observação, que assume-se ser um ruído gaussiano branco de média zero e covariância $\textbf{R}_k$. ($\textbf{v}_k \sim N(\textbf{0}, \textbf{R}_k)$).
 
-A filtragem é frequentemente dividida como duas fases: Predição e Atualizar (Alguns autores também contam a etapa de medição como uma fase do algoritmo). A fase de predição usa a estimativa anterior para produzir uma estimativa do estado atual. Na fase seguinte (de atualização), a predição atual é combinada com as informações da medição atual para aprimorar a estimativa do estado. As etapas do filtro são apresentadas a seguir.
+A filtragem é frequentemente dividida em duas fases: Predição e atualização (Alguns autores também contam a etapa de medição como uma fase do algoritmo). A fase de predição usa a estimativa anterior para produzir uma estimativa do estado atual. Na fase seguinte (de atualização), a predição atual é combinada com as informações da medição atual para aprimorar a estimativa do estado. As etapas do filtro são apresentadas a seguir.
 
 \textbf{Predição}:
 \begin{align*}
@@ -49,4 +49,4 @@ Sendo $\check{\textbf{P}}$ uma predição da covariância do estado seguinte (pr
     \hat{\textbf{P}}_k &= \left(\textbf{I} - \textbf{KH}_k \right)\check{\textbf{P}}_k
 \end{align*}
 
-Uma observação importante sobre a etapa de atualização é que ela irá tender para o valor predito caso o ganho do filtro $\textbf{K}_k$ seja baixo (resultado de um alto erro na medição). O contrário também ocorre, ou seja, para medições precisas ($\textbf{R}_k$ baixo) o ganho do filtro tende a ser alto e a etapa de atualização vai tender a usar mais a informação da medição como estado ótimo ($\hat{\textbf{x}}$). 
+Uma observação importante sobre a etapa de atualização é que o valor atualizado irá tender para o valor predito caso o ganho do filtro $\textbf{K}_k$ seja baixo (resultado de um alto erro na medição). O contrário também ocorre, ou seja, para medições precisas ($\textbf{R}_k$ baixo) o ganho do filtro tende a ser alto e a etapa de atualização vai tender a usar mais a informação da medição na estimação do estado ótimo ($\hat{\textbf{x}}$). 

@@ -1,19 +1,19 @@
-\section{\textit{Encoders} Incrementais}
+\section{\textit{encoders} Incrementais}
 \label{sec:encoders}
 % Referencias:
 % https://www.roboticsbusinessreview.com/news/differences-between-encoder-resolution-accuracy-and-precision/
 % https://www.newtoncbraga.com.br/index.php/como-funciona/5454-mec128
-% [Speed Measumment Using Rotary Encoders for High Performance ac Drives]
-% [Speed Measurement Algorithms for Low-Resolution Incremental Encoder Equipped Drives: a Comparative Analysis]
+% [Speed Measumment Using Rotary encoders for High Performance ac Drives]
+% [Speed Measurement Algorithms for Low-Resolution Incremental encoder Equipped Drives: a Comparative Analysis]
 % [A Simple Speed Feedback System for Low Speed DC Motor Control in Robotic Applications]
-% [An Embedded System for Position and Speed Measurement Adopting Incremental Encoders]
+% [An Embedded System for Position and Speed Measurement Adopting Incremental encoders]
 
 % FALAR SOBRE O FUNCIONAMENTO BASICO
 % CITAR OS DIFERENTES TIPOS
 % FALAR DO GRAY CODE
 % FALAR DO ERRO DE QUANTIZAÇÃO
 
-As saídas de um \emph{Encoder} incremental são, normalmente, duas ondas quadradas defasadas em $90^\circ$ uma da outra (em quadratura). Essa diferença de fase nos permite medir o sentido de rotação. Abordagens mais eficientes de leitura desses sensores são por meio da detecção das bordas dessas ondas, pois isso permite quadruplicar o número de pulsos por revolução (NPR) \cite{quantization_error01}. Existem dois métodos básicos para se realizar a medição da velocidade por meio desses sensores, são eles: \textbf{frequencímetro} e \textbf{periodímetro}. 
+As saídas de um \emph{encoder} incremental são, normalmente, duas ondas quadradas defasadas em $90^\circ$ uma da outra (em quadratura). Essa diferença de fase nos permite medir o sentido de rotação. Abordagens mais eficientes de leitura desses sensores são por meio da detecção das bordas dessas ondas, pois isso permite quadruplicar o número de pulsos por revolução (NPR) \cite{quantization_error01}. Existem dois métodos básicos para se realizar a medição da velocidade por meio desses sensores, são eles: \textbf{frequencímetro} e \textbf{periodímetro}. 
 
 Na medição por frequência (\textbf{frequencímetro}), conta-se o número de pulsos que ocorreram em um determinado período de tempo fixo. Com isso a velocidade pode ser obtida pela seguinte aproximação:
 
@@ -47,7 +47,7 @@ Nota-se pela Equação \ref{eq:erro_de_quantizacao_frequencimetro} que o erro de
 
 Pela Equação \ref{eq:erro_relativo_quantizacao_frequencimetro} observa-se que o erro relativo decresce conforme a velocidade $\omega$ aumenta, ou seja, o erro de quantização será mais significante para baixas velocidades.\\
 
-O outro método de leitura dos \emph{Encoders} incrementais é por medição de intervalos de tempo de um mesmo pulso (\textbf{periodímetro}) (ver Figura \ref{fig:ilustracao_periodimetro}). A seguinte formulação pode ser obtida considerando a velocidade do motor constante e sem levar em conta o sentido de giro:
+O outro método de leitura dos \emph{encoders} incrementais é por medição de intervalos de tempo de um mesmo pulso (\textbf{periodímetro}) (ver Figura \ref{fig:ilustracao_periodimetro}). A seguinte formulação pode ser obtida considerando a velocidade do motor constante e sem levar em conta o sentido de giro:
 
 \begin{equation}
     \omega = \frac{d\theta}{dt} \cong \frac{\Delta{\theta}}{nT_{hf}} \cong \frac{2\pi}{N_{PR} n T_{hf}} [rad.s^{-1}] \xrightarrow{} \frac{60}{N_{PR} n T_{hf}} [RPM]
@@ -73,7 +73,7 @@ A Equação \ref{eq:erro_quantizacao_periodimetro} mostra que o erro é diretame
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{figuras/ilustracoes/ilustracao_medicao_encoder_por_periodo.eps}
-    \caption{Ilustração de leitura de \emph{Encoder} periódica.}
+    \caption{Ilustração de leitura de \emph{encoder} periódica.}
     \label{fig:ilustracao_periodimetro}
     \fonte{Própria.}
 \end{figure}
@@ -100,7 +100,7 @@ Já para se obter o \textbf{sentido da velocidade $\omega$} é necessário fazer
 
 
 \begin{comment}
-% Speed Measumment Using Rotary Encoders
+% Speed Measumment Using Rotary encoders
 % for High Performance ac Drives
 
 SPEED MEASUREMENT USING A PERIODIMETER
@@ -128,7 +128,7 @@ It also possible to use quadruple frequency. Of course, this reduces the precisi
 The accuracy of the periodimeter is, more than the frequencimeter, related to the accuracy of the encoder, which in general depends on the errors in the radial grating, and the eccentricity of the graduated disk to the bearing.
 
 % Speed Measurement Algorithms for
-% Low-Resolution Incremental Encoder Equipped
+% Low-Resolution Incremental encoder Equipped
 % Drives: a Comparative Analysis
 
 

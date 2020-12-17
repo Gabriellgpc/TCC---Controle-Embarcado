@@ -19,7 +19,7 @@
 
 \input{tabelas/calibracoes}
 
-A Tabela \ref{tab:resumo_calibracao} contém, para os quatro experimentos e para cada motor, os resultados da calibração: Ganho da planta $K_m$; Constante de tempo $\tau_m$ e o ganho do controlador proporcional que foi calculado para se atingir o polo desejado $S_d = -20$ ($\tau_{d} = 0.08$ s) no experimento 1 e $S_d = -10$ ($\tau_{d} = 0.05$ s) nos experimentos 2, 3 e 4.
+A Tabela \ref{tab:resumo_calibracao} contém, para os quatro experimentos e para cada motor, os resultados da calibração: Ganho da planta $K_m$; Constante de tempo $\tau_m$ e o ganho do controlador proporcional que foi calculado para se atingir o polo desejado $S_d = -20$ ($\tau_{d} = 0,08$ s) no experimento 1 e $S_d = -10$ ($\tau_{d} = 0,05$ s) nos experimentos 2, 3 e 4.
 
 \begin{figure}[H]
     % \centering
@@ -53,14 +53,14 @@ A Tabela \ref{tab:resumo_calibracao} contém, para os quatro experimentos e para
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp01/filtro_vs_sem_filtro_esquerdo100.eps}
-    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
+    \caption{Comparação entre a velocidade estimada $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
     \label{fig:exp01:filtragem_esquerdo}
     \end{subfigure}
     \hfill
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp01/filtro_vs_sem_filtro_direito100.eps}
-    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
+    \caption{Comparação entre a velocidade estimada $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
     \label{fig:exp01:filtragem_direito}
     \end{subfigure}
     \hfill
@@ -78,23 +78,23 @@ A Tabela \ref{tab:resumo_calibracao} contém, para os quatro experimentos e para
     \label{fig:exp01:antes_vs_depois}
     \end{subfigure}
     
-    \caption{Experimento 1. \emph{Sinal de controle e Referência igual a 1.0.}}
+    \caption{Experimento 1. \emph{Sinal de controle e Referência igual a 1.}}
     \label{fig:exp01_100}
 \end{figure}
 
 
-Os gráficos comparativos para o experimento 1 estão exibidos na Figura \ref{fig:exp01_100}. A partir dessas Figuras e da Tabela \ref{tab:resumo_calibracao} extraí-se que para o \textbf{Experimento 1}:
+Os gráficos comparativos para o experimento 1 estão exibidos na Figura \ref{fig:exp01_100}. A partir dessas Figuras e da Tabela \ref{tab:resumo_calibracao} extrai-se que para o \textbf{Experimento 1}:
 
 \begin{itemize}
     \item Analisando as Figuras \ref{fig:exp01:curva_feedforward_esquerdo} e \ref{fig:exp01:curva_feedforward_direito}:\\
-        As zonas mortas ($|D|$) para o motor esquerdo e direito são respectivamente: $0.09$ (em ambos os sentidos de giro), 0.10 e 0.08 (na rotação que favorece o movimento para frente do robô e para trás, respectivamente).
+        As zonas mortas ($|D|$) para o motor esquerdo e direito são respectivamente: $0,09$ (em ambos os sentidos de giro), $0,10$ e $0,08$ (na rotação que favorece o movimento para frente do robô e para trás, respectivamente).
     \item Pelas Figuras \ref{fig:exp01:regressao_medido_esquerdo} e \ref{fig:exp01:regressao_medido_direito}:\\
-        Observa-se que a curva ideal (considerando o sistema de primeira ordem e com os parâmetros da calibração) apresenta um ganho levemente maior do que o que as medições aparentam para ambos os motores. E a constante de tempo aparenta corresponder bem ao observado pelas medições.
+        Observa-se que a curva ideal (considerando o sistema de primeira ordem e com os parâmetros da calibração) apresenta um ganho levemente maior do que o que as medições aparentam para ambos os motores. A constante de tempo aparenta corresponder bem ao observado pelas medições.
     \item Pelos gráficos das Figuras \ref{fig:exp01:filtragem_esquerdo} e \ref{fig:exp01:filtragem_direito} observa-se que:\\
-        para ambos os motores a curva correspondente à velocidade $\hat{\omega}$ estimada pelo filtro, encontra-se sobrepondo-se a curva das velocidades medidas, porém, sem apresentar as mesmas oscilações (ruídos de quantização).
+        para ambos os motores a curva correspondente à velocidade $\hat{\omega}$ estimada pelo filtro, sobrepõe-se à curva das velocidades medidas, porém, sem apresentar as mesmas oscilações (ruídos de quantização).
     \item Já pela Figura \ref{fig:exp01:controle} nota-se para ambos os motores:
-        Que a resposta do sistema controlado está bem próximo da referência $\omega_{ref}$ e que a constante de tempo $\tau$ está como o desejado ($0.08s$).
-    \item Por fim a Figura \ref{fig:exp01:antes_vs_depois} compara a resposta do sistema com o controlador+observador, com os mesmos sem estes. \\
+        que a resposta do sistema controlado está bem próxima da referência $\omega_{ref}$ e que a constante de tempo $\tau$ está como o desejado ($0,08$ s).
+    \item Por fim a Figura \ref{fig:exp01:antes_vs_depois} compara a resposta do sistema com o controlador+observador, com os mesmos e sem estes. \\
         Nota-se que esse experimento apresenta naturalmente uma boa simetria na resposta de ambos os motores, apesar do motor direito apresentar um elevado erro de quantização. Mesmo assim, é possível observar que tanto a simetria é melhorada/mantida quanto o erro de quantização diminui significativamente para ambos os motores.
 \end{itemize}
 
@@ -130,14 +130,14 @@ Os gráficos comparativos para o experimento 1 estão exibidos na Figura \ref{fi
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp02/filtro_vs_sem_filtro_esquerdo100.eps}
-    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
+    \caption{Comparação entre a velocidade estimada $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
     \label{fig:exp02:filtragem_esquerdo}
     \end{subfigure}
     \hfill
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp02/filtro_vs_sem_filtro_direito100.eps}
-    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
+    \caption{Comparação entre a velocidade estimada $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
     \label{fig:exp02:filtragem_direito}
     \end{subfigure}
     \hfill
@@ -155,21 +155,21 @@ Os gráficos comparativos para o experimento 1 estão exibidos na Figura \ref{fi
     \label{fig:exp02:antes_vs_depois}
     \end{subfigure}
     
-    \caption{Experimento 2. \emph{Sinal de controle e Referência igual a 1.0.}}
+    \caption{Experimento 2. \emph{Sinal de controle e Referência igual a 1.}}
     \label{fig:exp02_100}
 \end{figure}
 
-Os gráficos comparativos para o experimento 2 estão exibidos na Figura \ref{fig:exp02_100}. A partir dessas Figuras e da Tabela \ref{tab:resumo_calibracao} extraí-se que para o \textbf{Experimento 2}:
+Os gráficos comparativos para o experimento 2 estão exibidos na Figura \ref{fig:exp02_100}. A partir dessas Figuras e da Tabela \ref{tab:resumo_calibracao} extrai-se que para o \textbf{Experimento 2}:
 
 \begin{itemize}
     \item Analisando as Figuras \ref{fig:exp02:curva_feedforward_esquerdo} e \ref{fig:exp02:curva_feedforward_direito}:\\
-        As zonas mortas ($|D|$) para o motor esquerdo e direito são respectivamente: $0.02$, $0.04$ (para frente e para trás, respectivamente), $0.01$ e $0.05$ (na rotação que favorece o movimento para frente do robô e para trás, respectivamente).
+        As zonas mortas ($|D|$) para o motor esquerdo e direito são respectivamente: $0,02$, $0,04$ (para frente e para trás, respectivamente), $0,01$ e $0,05$ (na rotação que favorece o movimento para frente do robô e para trás, respectivamente).
     \item Pelas Figuras \ref{fig:exp02:regressao_medido_esquerdo} e \ref{fig:exp02:regressao_medido_direito}:\\
         Observa-se que, assim como para o experimento 1, a curva ideal (considerando o sistema de primeira ordem e com os parâmetros da calibração) apresenta um ganho levemente maior do que o que as medições aparentam para ambos os motores. E a constante de tempo aparenta corresponder bem ao observado pelas medições.
     \item Pelos gráficos das Figuras \ref{fig:exp02:filtragem_esquerdo} e \ref{fig:exp02:filtragem_direito} observa-se que:\\
-        para ambos os motores a curva correspondente à velocidade $\hat{\omega}$ estimada pelo filtro, encontra-se sobrepondo-se a curva das velocidades medidas, porém, sem apresentar o ruído de quantização.
+        para ambos os motores a curva correspondente à velocidade $\hat{\omega}$ estimada pelo filtro, sobrepõe-se à curva das velocidades medidas, porém, sem apresentar o ruído de quantização.
     \item Já pela Figura \ref{fig:exp02:controle} nota-se para ambos os motores:
-        Que a resposta do sistema controlado está bem próximo da referência $\omega_{ref}$ e que a constante de tempo $\tau$ está como o desejado ($0.05s$).
+        que a resposta do sistema controlado está bem próxima da referência $\omega_{ref}$ e que a constante de tempo $\tau$ está como o desejado ($0,05$ s).
     \item Por fim a Figura \ref{fig:exp02:antes_vs_depois} compara a resposta do sistema com o controlador+observador, com os mesmos sem estes. \\
         As mesmas observações feitas no experimento 1, são válidas para esses gráficos neste experimento.
 \end{itemize}
@@ -206,14 +206,14 @@ Os gráficos comparativos para o experimento 2 estão exibidos na Figura \ref{fi
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp03/filtro_vs_sem_filtro_esquerdo100.eps}
-    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
+    \caption{Comparação entre a velocidade estimada $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
     \label{fig:exp03:filtragem_esquerdo}
     \end{subfigure}
     \hfill
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp03/filtro_vs_sem_filtro_direito100.eps}
-    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
+    \caption{Comparação entre a velocidade estimada $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
     \label{fig:exp03:filtragem_direito}
     \end{subfigure}
     \hfill
@@ -231,7 +231,7 @@ Os gráficos comparativos para o experimento 2 estão exibidos na Figura \ref{fi
     \label{fig:exp03:antes_vs_depois}
     \end{subfigure}
     
-    \caption{Experimento 3. \emph{Sinal de controle e Referência igual a 1.0.}}
+    \caption{Experimento 3. \emph{Sinal de controle e Referência igual a 1.}}
     \label{fig:exp03_100}
 \end{figure}
 
@@ -270,14 +270,14 @@ Os gráficos comparativos para o experimento 3 estão exibidos na Figura \ref{fi
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp04/filtro_vs_sem_filtro_esquerdo100.eps}
-    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
+    \caption{Comparação entre a velocidade estimada $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Esquerdo.}
     \label{fig:exp04:filtragem_esquerdo}
     \end{subfigure}
     \hfill
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figuras/resultados/exp04/filtro_vs_sem_filtro_direito100.eps}
-    \caption{Comparação entre a velocidade estimativa $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
+    \caption{Comparação entre a velocidade estimada $\hat{\omega}$ e a velocidade $\omega$ medida. Motor Direito.}
     \label{fig:exp04:filtragem_direito}
     \end{subfigure}
     \hfill
@@ -295,21 +295,21 @@ Os gráficos comparativos para o experimento 3 estão exibidos na Figura \ref{fi
     \label{fig:exp04:antes_vs_depois}
     \end{subfigure}
     
-    \caption{Experimento 4. \emph{Sinal de controle e Referência igual a 1.0.}}
+    \caption{Experimento 4. \emph{Sinal de controle e Referência igual a 1.}}
     \label{fig:exp04_100}
 \end{figure}
 
-Os gráficos comparativos para o experimento 4 estão exibidos na Figura \ref{fig:exp04_100}. A partir dessas Figuras e da Tabela \ref{tab:resumo_calibracao} extraí-se que para o \textbf{Experimento 4}:
+Os gráficos comparativos para o experimento 4 estão exibidos na Figura \ref{fig:exp04_100}. A partir dessas Figuras e da Tabela \ref{tab:resumo_calibracao} extrai-se que para o \textbf{Experimento 4}:
 
 \begin{itemize}
     \item Analisando as Figuras \ref{fig:exp04:curva_feedforward_esquerdo} e \ref{fig:exp04:curva_feedforward_direito}:\\
-        As zonas mortas ($|D|$) para o motor esquerdo e direito são respectivamente: $0.03$ (para ambos os sentidos de giro), $0.02$ e $0.03$ (na rotação que favorece o movimento para frente do robô e para trás, respectivamente).
+        As zonas mortas ($|D|$) para o motor esquerdo e direito são respectivamente: $0,03$ (para ambos os sentidos de giro), $0,02$ e $0,03$ (na rotação que favorece o movimento para frente do robô e para trás, respectivamente).
     \item Pelas Figuras \ref{fig:exp04:regressao_medido_esquerdo} e \ref{fig:exp04:regressao_medido_direito}:\\
         Observa-se que, as curvas ideais/teóricas (considerando o sistema de primeira ordem e com os parâmetros da calibração) conseguem representar bem o comportamento apresentado pela resposta dos motores esquerdo e direito.
     \item Pelos gráficos das Figuras \ref{fig:exp04:filtragem_esquerdo} e \ref{fig:exp04:filtragem_direito} observa-se que:\\
-        para ambos os motores a curva correspondente à velocidade $\hat{\omega}$ estimada pelo filtro, encontra-se sobrepondo-se a curva das velocidades medidas, porém, com um ruído bem menor.
+        para ambos os motores a curva correspondente à velocidade $\hat{\omega}$ estimada pelo filtro, sobrepõe-se à curva das velocidades medidas, porém, com um ruído bem menor.
     \item Já pela Figura \ref{fig:exp04:controle} nota-se para ambos os motores:
-        Que a resposta do sistema controlado está bem próximo da referência $\omega_{ref}$ e que a constante de tempo $\tau$ está como o desejado ($0.05s$).
+        que a resposta do sistema controlado está bem próxima da referência $\omega_{ref}$ e que a constante de tempo $\tau$ está como o desejado ($0,05$ s).
     \item Por fim a Figura \ref{fig:exp04:antes_vs_depois} compara a resposta do sistema com o controlador+observador, com os mesmos sem estes. \\
         Nota-se que os conjuntos motor-roda esquerdo e direito apresentam assimetrias significativas, principalmente com relação ao  ganho (o conjunto direito apresenta-se com um ganho maior). Porém a resposta controlada mostra que se conseguiu diminuir significativamente essas assimetrias nesse experimento.
 \end{itemize}

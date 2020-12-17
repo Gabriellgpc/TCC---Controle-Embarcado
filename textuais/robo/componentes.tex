@@ -5,11 +5,11 @@
 % https://www.pololu.com/product/2212
 % Encoder:
 % https://www.pololu.com/product/3081
-% Driver motor:
+% driver motor:
 % https://www.pololu.com/product/713
 % ESP32:
 
-São cinco o número de componentes eletro-eletrônicos básicos que compõem os robôs presentes neste trabalho, sendo eles: um par de atuadores (motor direito e esquerdo), um par de sensores de rotação (\textit{Encoders} magnéticos), um \emph{Driver} motor multicanal, um microcontrolador e baterias recarregáveis. Devido às características dos componentes escolhidos para o projeto, apenas estes cinco tipos foram suficientes para compor a eletrônica do robô de forma a respeitar as restrições dimensionais, realizar o controle dos motores de forma eficiência e com um bom período de amostragem e baixo gasto energético, além de um baixo custo financeiro. A seguir serão apresentados mais detalhes dos componentes supracitados.\\
+São cinco o número de componentes eletro-eletrônicos básicos que compõem os robôs presentes neste trabalho, sendo eles: um par de atuadores (motor direito e esquerdo), um par de sensores de rotação (\textit{Encoders} magnéticos), um \emph{driver} motor multicanal, um microcontrolador e baterias recarregáveis. Devido às características dos componentes escolhidos para o projeto, apenas estes cinco tipos foram suficientes para compor a eletrônica do robô de forma a respeitar as restrições dimensionais, realizar o controle dos motores de forma eficiência e com um bom período de amostragem e baixo gasto energético, além de um baixo custo financeiro. A seguir serão apresentados mais detalhes dos componentes supracitados.\\
 
 \begin{figure}[H]
     \centering
@@ -19,28 +19,28 @@ São cinco o número de componentes eletro-eletrônicos básicos que compõem os
     \fonte{\cite{Pololu:Encoder}.}
 \end{figure}
 
-Os sensores utilizados são \emph{Encoders} rotativos magnéticos do tipo incremental (ver Figura \ref{fig:encoder}). Eles podem ser trabalhados com uma resolução de até $12$ pulsos por revolução (se utilizado todas as bordas dos pulsos gerados). Esses sensores operam com uma faixa de tensão de alimentação de $2.7$V até $18$V.\\
+Os sensores utilizados são \emph{Encoders} rotativos magnéticos do tipo incremental (ver Figura \ref{fig:encoder}). Eles podem ser trabalhados com uma resolução de até $12$ pulsos por revolução (se utilizado todas as bordas dos pulsos gerados). Esses sensores operam com uma faixa de tensão de alimentação de $2,7$ V até $18$ V.\\
 
 % 30:1 Micro Metal Gearmotor HP 6V with Extended Motor Shaft
 \begin{figure}[H]
     \centering
     \includegraphics[width=3cm]{figuras/eletronica/motor_com_encoder.jpg}
-    \caption{Micro Motor de 6V com caixa de redução de 30:1 e \textit{Encoder} magnético.}
+    \caption{Micro Motor de 6 V com caixa de redução de 30:1 e \textit{encoder} magnético.}
     \label{fig:motor_com_encoder}
     \fonte{\cite{Pololu:Encoder_no_motor}.}
 \end{figure}
 
-A Figura \ref{fig:motor_com_encoder} mostra o motor utilizado, equipado com o módulo que contem o \textit{Encoder} magnético em seu eixo estendido. Esse é um micro motor de $6$V com uma caixa de redução de $\approx 30:1$. A caixa de redução faz com que a resolução do sensor seja $30$ vezes maior na roda (eixo da caixa de redução) do que no eixo do motor, ou seja, de uma resolução (máxima) de $12$PPR passa a gerar até o equivalente a $360$ pulsos por revolução.\\
+A Figura \ref{fig:motor_com_encoder} mostra o motor utilizado, equipado com o módulo que contém o \textit{encoder} magnético em seu eixo estendido. Esse é um micro motor de $6$ V com uma caixa de redução de $\approx 30:1$. A caixa de redução faz com que a resolução do sensor seja $30$ vezes maior na roda (eixo da caixa de redução) do que no eixo do motor, ou seja, de uma resolução (máxima) de $12$ PPR passa a gerar até o equivalente a $360$ pulsos por revolução da roda.\\
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=3cm]{figuras/eletronica/driver.jpg}
-    \caption{\textit{Driver} Motor TB6612FNG.}
+    \caption{\textit{driver} Motor TB6612FNG.}
     \label{fig:driver_motor}
-    \fonte{\cite{Pololu:Driver}.}
+    \fonte{\cite{Pololu:driver}.}
 \end{figure}
 
-A Figura \ref{fig:driver_motor} mostra o \emph{Driver motor} utilizado. Ele é responsável por fazer o interfaceamento entre o $\mu{}C$ e os motores para garantir a separação dos circuitos de alta potência (motores) do circuito de baixa potência ($\mu{}C$). O \emph{Driver} possui dois canais de controle de motores, ou seja, possui dois conjuntos de saídas de alta potência (até $3$A e $13.5$V) e dois de entrada para sinal PWM (frequência máxima de $100$ kHz, tensão lógica máxima de $5.5$V) para controlar dois motores separadamente. Além disso ele possui circuitos de proteção e proteção contra correntes inversas que possam ser geradas pelos motores.\\
+A Figura \ref{fig:driver_motor} mostra o \emph{driver motor} utilizado. Ele é responsável por fazer o interfaceamento entre o microcontrolador e os motores para garantir a separação dos circuitos de alta potência (motores) do circuito de baixa potência. O \emph{driver} possui dois canais de controle de motores, ou seja, possui dois conjuntos de saídas de alta potência (até $3$ A e $13,5$ V) e dois de entrada para sinal PWM (frequência máxima de $100$ kHz, tensão lógica máxima de $5,5$ V) para controlar dois motores separadamente. Além disso ele possui circuitos de proteção contra correntes inversas que possam ser geradas pelos motores.\\
 
 
 \begin{figure}[H]
@@ -51,7 +51,7 @@ A Figura \ref{fig:driver_motor} mostra o \emph{Driver motor} utilizado. Ele é r
     \label{fig:esp32_kit}
 \end{figure}
 
-O $\mu{}C$ utilizado foi o \emph{ESP32} da empresa \emph{Espressif Systems} em um \emph{kit} de desenvolvimento rápido (ver Figura \ref{fig:esp32_kit}). O microcontrolador possui um microprocessador \emph{Tensilica Xtensa LX6} de $32$\emph{bits} com as seguintes especificações \cite{esp32:datasheet}:
+O microcontrolador utilizado foi o \emph{ESP32} da empresa \emph{Espressif Systems} em um \emph{kit} de desenvolvimento rápido (ver Figura \ref{fig:esp32_kit}). Ele possui um microprocessador \emph{Tensilica Xtensa LX6} de $32$ \emph{bits} com as seguintes especificações \cite{esp32:datasheet}:
 
 \begin{itemize}
     \item CPUs: 2 núcleos principais e um terceiro núcleo de baixo consumo enérgico. 
@@ -70,4 +70,4 @@ O $\mu{}C$ utilizado foi o \emph{ESP32} da empresa \emph{Espressif Systems} em u
     \fonte{\cite{bateria:futuramix}}
 \end{figure}
 
-A Figura \ref{fig:bateria_lipo} apresenta a bateria utilizada. É uma bateria de 1 célula (1S), portanto, de $3.7$V e com uma capacidade de carga de $750$mAh.
+A Figura \ref{fig:bateria_lipo} apresenta a bateria utilizada. É uma bateria de 1 célula (1S), portanto, de $3,7$V e com uma capacidade de carga de $750$mAh.

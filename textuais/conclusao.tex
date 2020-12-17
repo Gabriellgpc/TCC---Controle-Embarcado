@@ -9,19 +9,19 @@ Pelo exposto no \autoref{ch:resultados} podemos notar que:
 
 \begin{itemize}
     \item A aproximação do comportamento dos motores para um sistema de primeira ordem, mostrou-se ser suficientemente para todos os experimentos realizados (como esperado, conforme apresentado na \autoref{sec:motor_ref_teo});
-    \item O uso do filtro de \emph{Kalman} para estimar a velocidade de rotação dos motores, mostrou-se eficiente, pois conseguiu reduzir quase que completamente os erros de quantização, mesmo com medições provenientes de sensores de baixa resolução e operando em altas velocidades (pior condição para a leitura de \emph{Encoders} pelo método da medição de períodos);
+    \item O uso do filtro de \emph{Kalman} para estimar a velocidade de rotação dos motores, mostrou-se eficiente, pois conseguiu reduzir quase que completamente os erros de quantização, mesmo com medições provenientes de sensores de baixa resolução e operando em altas velocidades (pior condição para a leitura de \emph{encoders} pelo método da medição de períodos);
     \item O controlador \emph{Feedforward} em conjunto com o controlador proporcional (\emph{Backward}) também mostrou bons resultados, conseguindo rastrear a referência com uma margem de erro relativamente baixa, além de atingir os tempos de respostas desejados (constante de tempo desejada) e contornar as pertubações externas (como mostrado principalmente no experimento 4 nas Figuras \ref{fig:exp04:antes_vs_depois}).\\
 \end{itemize}
 
 
-Conclui-se portanto que o sistema proposto é capaz de oferecer boas estimativas para as velocidades dos motores, por meio do filtro de \emph{Kalman}, mesmo para sensores com baixa resolução. E que o sistema de controle (fazendo uso dessas estimativas) é capaz de reduzir as assimetrias do par motor-roda de (mas não limitando-se) robôs com acionamento diferencial. Além disso, o sistema proposto apresentou-se como uma solução simples o suficiente para conseguir ser implementado em um \emph{Hardware} com recursos limitados, como um  microcontrolador.\\
+Conclui-se portanto que o sistema proposto é capaz de oferecer boas estimativas para as velocidades dos motores, por meio do filtro de \emph{Kalman}, mesmo para sensores com baixa resolução. E que o sistema de controle (fazendo uso dessas estimativas) é capaz de reduzir as assimetrias do par motor-roda de (mas não limitando-se) robôs com acionamento diferencial. Além disso, o sistema proposto apresentou-se como uma solução simples o suficiente para conseguir ser implementado em um \emph{hardware} com recursos limitados, como um  microcontrolador.\\
 
 Fazem-se necessárias também algumas observações importantes a respeito dos experimentos e de suas análises apresentados no capítulo anterior. São elas: 
 
 \begin{itemize}
-    \item A escolha de se trabalhar com as velocidades no eixo do motor antes da caixa de redução fez com que os valores em módulo dessas velocidades fossem altos, dificuldade um pouco a análise visual dos gráficos, fazendo (por exemplo) com que erros absolutos no rastreio da referência sejam mascarados devido à escala dos gráficos.
+    \item A escolha de se trabalhar com as velocidades no eixo do motor antes da caixa de redução fez com que os valores em módulo dessas velocidades fossem altos, dificultando um pouco a análise visual dos gráficos, fazendo (por exemplo) com que erros absolutos no rastreio da referência sejam mascarados devido à escala dos gráficos.
     
-    \item Outro ponto é com relação à variedade dos experimentos: os quatro experimentos mostram pouca diferença entre si. Provavelmente isso é devido ao fato de que a maioria deles foram realizados com os robôs suspensos (sem contato com o chão), apenas o experimento 4 foi feito com um robô em contato com o chão (situação de operação normal do robô). O motivo disso foram problemas técnicos encontrados durante a fase de experimentação e testes, que fez com que dois dos três robôs disponíveis não conseguissem operar normalmente, limitando assim as possibilidades de testes.\\
+    \item Outro ponto é com relação à variedade dos experimentos: os quatro experimentos mostram pouca diferença entre si. Provavelmente isso é devido ao fato de que a maioria deles foram realizados com os robôs suspensos (sem contato com o chão), apenas o experimento 4 foi feito com um robô em contato com o chão (situação de operação normal do robô). O motivo disso foram problemas técnicos encontrados durante a fase de experimentação e testes, os problemas técnicos fizeram com que dois dos três robôs disponíveis não conseguissem operar normalmente, limitando assim as possibilidades de testes.\\
 \end{itemize}
 
 
@@ -30,7 +30,7 @@ O presente trabalho possui como objetivos futuros:
 \begin{itemize}
     \item A adição da ação integral (controlador PI) no sistema de controle, para eliminar o erro residual que o controlador \emph{Feedforward} não está sendo capaz de eliminar;
     
-    \item E a calibração automática (dinâmica), principalmente do ganho do sistema, por meio da técnica de mínimos quadrados recursivos, como apresentado em alguns dos trabalhos descritos na \autoref{sec:trabalhos_relacionados}.
+    \item A calibração automática (dinâmica), principalmente do ganho do sistema, por meio da técnica de mínimos quadrados recursivos, como apresentado em alguns dos trabalhos descritos na \autoref{sec:trabalhos_relacionados}.
 \end{itemize}
 
  
